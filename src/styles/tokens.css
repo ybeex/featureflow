@@ -1,0 +1,39 @@
+/* FeatureFlow design tokens. The gallery chrome only; sections theme themselves from config. */
+:root {
+  --font-sans: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 72px; --space-9: 112px;
+  --text-xs: 0.75rem; --text-sm: 0.8125rem; --text-md: 0.9375rem; --text-lg: 1.125rem; --text-xl: 1.5rem; --text-2xl: 2.25rem; --text-3xl: clamp(2.6rem, 7vw, 5.6rem);
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-pill: 999px;
+  --dur-fast: 120ms; --dur: 220ms; --dur-slow: 480ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bp-sm: 640px; --bp-md: 960px; --bp-lg: 1280px;
+  --z-nav: 50; --z-popover: 60; --z-modal: 80; --z-toast: 90;
+
+  --accent: #e8501f;
+  --accent-ink: #ffffff;
+  color-scheme: light;
+}
+:root[data-theme="light"] {
+  --bg: #fbfaf8; --surface: #ffffff; --surface-2: #f3f1ed; --surface-3: #eae7e1;
+  --ink: #16151a; --ink-2: #4b4a52; --ink-3: #6b6a73;
+  --line: rgb(22 21 26 / 0.1); --line-strong: rgb(22 21 26 / 0.2);
+  --shadow-sm: 0 1px 2px rgb(22 21 26 / 0.06);
+  --shadow-md: 0 10px 30px -12px rgb(22 21 26 / 0.18), 0 2px 6px rgb(22 21 26 / 0.05);
+  --shadow-lg: 0 30px 70px -28px rgb(22 21 26 / 0.35);
+  --accent-text: #c63d10;
+  --code-bg: #14131a; --code-ink: #e9e7f0;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e0d11; --surface: #17161c; --surface-2: #1f1e26; --surface-3: #292833;
+  --ink: #f2f0f6; --ink-2: #bcbac6; --ink-3: #9795a3;
+  --line: rgb(255 255 255 / 0.1); --line-strong: rgb(255 255 255 / 0.22);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 10px 30px -12px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 30px 70px -28px rgb(0 0 0 / 0.8);
+  --accent: #ff6a3d; --accent-text: #ff8a63;
+  --code-bg: #0a0910; --code-ink: #e9e7f0;
+}
