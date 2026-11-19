@@ -1,0 +1,44 @@
+.ff-mock-frame { border-radius: 12px; overflow: hidden; background: var(--mock-surface, #fff); color: var(--mock-ink, #1b1b22); border: 1px solid var(--mock-line, rgb(0 0 0 / 0.1)); box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.35), 0 8px 20px -10px rgb(0 0 0 / 0.2); }
+.ff-mock-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: var(--mock-chrome, #f1f1f4); border-bottom: 1px solid var(--mock-line, rgb(0 0 0 / 0.08)); }
+.ff-mock-bar span { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; }
+.ff-mock-bar span:nth-child(2) { background: #febc2e; }
+.ff-mock-bar span:nth-child(3) { background: #28c840; }
+.ff-mock-bar em { margin-left: 10px; flex: 1; max-width: 240px; font: 500 11px/1 ui-monospace, monospace; font-style: normal; padding: 5px 10px; border-radius: 6px; background: rgb(0 0 0 / 0.06); color: rgb(0 0 0 / 0.5); }
+.ff-mock-body { display: block; }
+.ff-mock-root { container-type: inline-size; width: 100%; aspect-ratio: 16 / 10; background: var(--mock-surface, #fff); color: var(--mock-ink, #1b1b22); overflow: hidden; }
+.ff-mock { --u: clamp(5px, 1.4cqw, 12px); display: flex; height: 100%; gap: calc(var(--u) * 1.2); padding: calc(var(--u) * 1.4); font-size: var(--u); }
+.ff-mock i, .ff-mock p, .ff-mock span, .ff-mock em { display: block; margin: 0; font-style: normal; }
+.ff-mock--dashboard aside { width: 12%; display: grid; gap: var(--u); align-content: start; }
+.ff-mock--dashboard aside i { height: calc(var(--u) * 2.4); border-radius: calc(var(--u) * .6); background: rgb(0 0 0 / .07); }
+.ff-mock--dashboard aside i[data-on] { background: var(--ff-accent, #ff6a3d); opacity: .9; }
+.ff-mock--dashboard main { flex: 1; display: grid; gap: calc(var(--u) * 1.2); grid-template-rows: auto 1fr auto; min-width: 0; }
+.ff-mock-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--u); }
+.ff-mock-stats div { padding: calc(var(--u) * 1.1); border-radius: calc(var(--u) * .9); background: rgb(0 0 0 / .045); }
+.ff-mock-stats small { display: block; font-size: calc(var(--u) * .85); opacity: .55; }
+.ff-mock-stats b { font-size: calc(var(--u) * 1.8); letter-spacing: -.02em; }
+.ff-mock-chart { border-radius: calc(var(--u) * .9); background: rgb(0 0 0 / .035); padding: var(--u); min-height: 0; }
+.ff-mock-chart svg { width: 100%; height: 100%; display: block; }
+.ff-mock-rows { display: grid; gap: calc(var(--u) * .7); }
+.ff-mock-rows p { display: flex; align-items: center; gap: var(--u); }
+.ff-mock-rows i { width: calc(var(--u) * 1.8); height: calc(var(--u) * 1.8); border-radius: 50%; background: rgb(0 0 0 / .12); }
+.ff-mock-rows span { flex: 1; height: calc(var(--u) * .8); border-radius: 99px; background: rgb(0 0 0 / .1); }
+.ff-mock-rows em { width: 14%; height: calc(var(--u) * .8); border-radius: 99px; background: rgb(0 0 0 / .08); }
+.ff-mock--editor aside { width: 22%; display: grid; gap: calc(var(--u) * .9); align-content: start; padding-top: var(--u); }
+.ff-mock--editor aside p { height: calc(var(--u) * .9); border-radius: 99px; background: rgb(0 0 0 / .1); }
+.ff-mock--editor main { flex: 1; display: grid; gap: calc(var(--u) * .8); align-content: start; padding: var(--u); border-radius: calc(var(--u) * .9); background: rgb(0 0 0 / .045); }
+.ff-mock--editor main p { display: flex; gap: var(--u); align-items: center; }
+.ff-mock--editor main b { width: calc(var(--u) * 1.6); font-size: calc(var(--u) * .8); opacity: .35; font-weight: 500; }
+.ff-mock--editor main span { height: calc(var(--u) * .85); border-radius: 99px; background: rgb(0 0 0 / .14); }
+.ff-mock--chat { flex-direction: column; justify-content: flex-end; padding: calc(var(--u) * 1.6); }
+.ff-mock--chat p { height: calc(var(--u) * 3.2); border-radius: calc(var(--u) * 1.4); background: rgb(0 0 0 / .07); }
+.ff-mock--chat p[data-mine] { align-self: flex-end; background: var(--ff-accent, #ff6a3d); opacity: .88; }
+.ff-mock--chat footer { margin-top: var(--u); }
+.ff-mock--chat footer span { height: calc(var(--u) * 3); border-radius: 99px; border: 1.5px solid rgb(0 0 0 / .14); }
+.ff-mock--analytics { align-items: stretch; }
+.ff-mock-cols { flex: 1; display: flex; align-items: flex-end; gap: calc(var(--u) * .7); padding: var(--u); border-radius: calc(var(--u) * .9); background: rgb(0 0 0 / .04); }
+.ff-mock-cols i { flex: 1; border-radius: calc(var(--u) * .5) calc(var(--u) * .5) 0 0; background: var(--ff-accent, #ff6a3d); opacity: .85; }
+.ff-mock-cols i:nth-child(odd) { opacity: .5; }
+.ff-mock-donut { width: 34%; align-self: center; color: #000; }
+.ff-mock--kanban > div { flex: 1; display: grid; gap: calc(var(--u) * .9); align-content: start; padding: var(--u); border-radius: calc(var(--u) * .9); background: rgb(0 0 0 / .04); }
+.ff-mock--kanban small { height: calc(var(--u) * .9); width: 50%; border-radius: 99px; background: rgb(0 0 0 / .18); }
+.ff-mock--kanban p { border-radius: calc(var(--u) * .7); background: #fff; box-shadow: 0 1px 3px rgb(0 0 0 / .12); }

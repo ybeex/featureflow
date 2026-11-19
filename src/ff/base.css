@@ -1,0 +1,44 @@
+/* FeatureFlow shared base. Every section imports this once. */
+.ff-root {
+  position: relative;
+  box-sizing: border-box;
+  /* Sections respond to the width they are given (a column, a preview frame), not the browser window. */
+  container-type: inline-size;
+  color: var(--ff-fg, #14141a);
+  background: var(--ff-bg, #ffffff);
+  font-family: var(--ff-font, "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", sans-serif);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.ff-root *,
+.ff-root *::before,
+.ff-root *::after {
+  box-sizing: inherit;
+}
+.ff-root :focus-visible {
+  outline: 2px solid var(--ff-accent, #ff6a3d);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.ff-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.ff-root button {
+  font: inherit;
+  color: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ff-root *,
+  .ff-root *::before,
+  .ff-root *::after {
+    scroll-behavior: auto !important;
+  }
+}
