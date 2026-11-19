@@ -1,0 +1,35 @@
+.ff-hscroll-layered-panels__trackwrap { height: calc(var(--vp-h, 100vh) * (1 + (var(--ff-n) - 1) * var(--ff-len))); }
+.ff-hscroll-layered-panels__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; display: flex; flex-direction: column; }
+.ff-hscroll-layered-panels[data-nav="bottom"] .ff-hscroll-layered-panels__stage { flex-direction: column-reverse; }
+.ff-hscroll-layered-panels__tabs { z-index: 5; display: flex; gap: 6px; padding: 12px clamp(12px, 3cqw, 32px); overflow-x: auto; scrollbar-width: none; justify-content: center; }
+.ff-hscroll-layered-panels__tabs button { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px 0 8px; border-radius: 99px; border: 1px solid color-mix(in oklab, var(--ff-fg) 22%, transparent); background: color-mix(in oklab, var(--ff-bg) 80%, transparent); color: var(--ff-fg); font-size: 0.85rem; font-weight: 550; cursor: pointer; white-space: nowrap; }
+.ff-hscroll-layered-panels__tabs button span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 0.72rem; font-weight: 700; background: color-mix(in oklab, var(--ff-fg) 14%, transparent); }
+.ff-hscroll-layered-panels__tabs button[aria-current="true"] { background: var(--ff-accent); border-color: var(--ff-accent); color: #14100d; font-weight: 700; }
+.ff-hscroll-layered-panels__tabs button[aria-current="true"] span { background: rgb(0 0 0 / 0.18); }
+.ff-hscroll-layered-panels__strip { flex: 1; min-height: 0; display: flex; width: calc(var(--ff-n) * 100%); transform: translate3d(calc(var(--ff-p, 0) * (var(--ff-n) - 1) / var(--ff-n) * -100%), 0, 0); will-change: transform; }
+.ff-hscroll-layered-panels__panel { position: relative; flex: 0 0 calc(100% / var(--ff-n)); overflow: hidden; display: grid; place-items: center; padding: clamp(12px, 3cqw, 32px); --shift: calc((var(--ff-p, 0) * (var(--ff-n) - 1) - var(--i))); }
+.ff-hscroll-layered-panels__layer { position: absolute; inset: 0; opacity: var(--ff-layer); }
+.ff-hscroll-layered-panels__layer--far { inset: -4% -16%; transform: translate3d(calc(var(--shift) * var(--ff-par) * -0.6%), 0, 0); }
+.ff-hscroll-layered-panels__layer--mid { inset: auto auto 4% 6%; width: 34%; transform: translate3d(calc(var(--shift) * var(--ff-par) * -1.4%), 0, 0); opacity: calc(var(--ff-layer) + 0.2); }
+.ff-hscroll-layered-panels__art { width: 100%; height: 100%; aspect-ratio: auto !important; }
+.ff-hscroll-layered-panels__blob { border-radius: 50%; }
+.ff-hscroll-layered-panels__card { position: relative; z-index: 2; max-width: 30rem; padding: clamp(18px, 3cqw, 36px); border-radius: 22px; background: color-mix(in oklab, var(--ff-bg) 82%, transparent); backdrop-filter: blur(10px); border: 1px solid color-mix(in oklab, var(--ff-fg) 16%, transparent); transform: translate3d(calc(var(--shift) * var(--ff-par) * 0.5%), 0, 0); }
+.ff-hscroll-layered-panels__card > p:first-child { margin: 0; color: var(--ff-accent); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.ff-hscroll-layered-panels__card h3 { margin: 0.5rem 0 0.4rem; font-size: clamp(1.4rem, 3.6cqw, 2.4rem); line-height: 1.05; letter-spacing: -0.03em; }
+.ff-hscroll-layered-panels__body { margin: 0; opacity: 0.85; }
+@supports not (backdrop-filter: blur(1px)) { .ff-hscroll-layered-panels__card { background: var(--ff-bg); } }
+/* Narrow containers and reduced motion: vertical stack, no pinning, no horizontal travel. */
+@container (max-width: 700px) {
+  .ff-hscroll-layered-panels__trackwrap { height: auto; }
+  .ff-hscroll-layered-panels__stage { position: static; height: auto; overflow: visible; }
+  .ff-hscroll-layered-panels__tabs { display: none; }
+  .ff-hscroll-layered-panels__strip { width: auto; flex-direction: column; transform: none; will-change: auto; }
+  .ff-hscroll-layered-panels__panel { flex: none; min-height: calc(var(--vp-h, 100vh) * 0.7); }
+  .ff-hscroll-layered-panels__layer--far, .ff-hscroll-layered-panels__layer--mid, .ff-hscroll-layered-panels__card { transform: none; }
+}
+.ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__trackwrap { height: auto; }
+.ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__stage { position: static; height: auto; overflow: visible; }
+.ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__tabs { display: none; }
+.ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__strip { width: auto; flex-direction: column; transform: none; will-change: auto; }
+.ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__panel { flex: none; min-height: calc(var(--vp-h, 100vh) * 0.7); }
+.ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__layer--far, .ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__layer--mid, .ff-hscroll-layered-panels[data-reduced] .ff-hscroll-layered-panels__card { transform: none; }

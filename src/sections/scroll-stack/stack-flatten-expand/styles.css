@@ -1,0 +1,30 @@
+.ff-stack-flatten-expand { overflow-x: clip; }
+.ff-stack-flatten-expand { padding-bottom: calc(var(--vp-h, 100vh) * 0.2); }
+.ff-stack-flatten-expand__head { padding: clamp(24px, 5cqw, 56px) 16px clamp(16px, 3cqw, 32px); text-align: center; }
+.ff-stack-flatten-expand__head p { margin: 0; color: var(--ff-accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-stack-flatten-expand__head h2 { margin: 0.4rem 0 0; font-size: clamp(1.7rem, 4.6cqw, 3.2rem); line-height: 1.05; letter-spacing: -0.03em; }
+.ff-stack-flatten-expand__list { list-style: none; margin: 0; padding: 0; display: grid; gap: calc(var(--vp-h, 100vh) * 0.12); }
+.ff-stack-flatten-expand__slot { position: sticky; top: var(--ff-top); height: calc(var(--vp-h, 100vh) * 0.62); /* e: 0 → 1 as the panel travels from entering to pinned */
+  --e: clamp(0, calc((var(--ff-p, 0.7) - 0.1) * 2), 1); }
+.ff-stack-flatten-expand__panel {
+  height: 100%; display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(14px, 4cqw, 48px); align-items: center;
+  /* Content stays inside the narrowest clip so nothing is cropped at the start width. */
+  padding: clamp(18px, 4cqw, 48px) calc((100 - var(--ff-start)) / 2 * 1% + clamp(14px, 3cqw, 36px));
+  background: var(--tone); color: var(--ff-fg);
+  clip-path: inset(0 calc((1 - var(--e)) * (100 - var(--ff-start)) / 2 * 1%) round calc(var(--ff-r0) + (var(--ff-r1) - var(--ff-r0)) * var(--e)));
+  transform: rotate(calc((1 - var(--e)) * var(--ff-tilt) * 1deg * (var(--i) - 1)));
+  transform-origin: 50% 100%;
+  will-change: clip-path, transform;
+}
+.ff-stack-flatten-expand__copy > p:first-child { margin: 0; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: color-mix(in oklab, var(--ff-fg) 70%, var(--tone)); }
+.ff-stack-flatten-expand__copy h3 { margin: 0.5rem 0 0.6rem; font-size: clamp(1.3rem, 3.4cqw, 2.4rem); line-height: 1.08; letter-spacing: -0.025em; }
+.ff-stack-flatten-expand__body { margin: 0; max-width: 28rem; font-size: clamp(0.9rem, 1.6cqw, 1.05rem); opacity: 0.8; }
+.ff-stack-flatten-expand__art { border-radius: 14px; width: 100%; }
+@container (max-width: 640px) {
+  .ff-stack-flatten-expand__slot { height: auto; min-height: calc(var(--vp-h, 100vh) * 0.6); }
+  .ff-stack-flatten-expand__panel { grid-template-columns: 1fr; height: auto; min-height: 100%; align-content: center; }
+  .ff-stack-flatten-expand__art { aspect-ratio: 16 / 8 !important; }
+}
+.ff-stack-flatten-expand[data-reduced] .ff-stack-flatten-expand__slot { position: static; height: auto; }
+.ff-stack-flatten-expand[data-reduced] .ff-stack-flatten-expand__panel { clip-path: none; transform: none; padding: clamp(18px, 4cqw, 48px); will-change: auto; border-radius: 16px; }
+.ff-stack-flatten-expand[data-reduced] .ff-stack-flatten-expand__list { gap: 16px; padding-inline: 16px; }

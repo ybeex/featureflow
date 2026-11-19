@@ -1,0 +1,35 @@
+.ff-reveal-svg-draw__track { height: calc(var(--vp-h, 100vh) * var(--ff-len)); }
+.ff-reveal-svg-draw__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: clamp(12px, 3cqw, 32px); padding: 0 clamp(16px, 4cqw, 56px); }
+.ff-reveal-svg-draw__head { text-align: center; }
+.ff-reveal-svg-draw__head p { margin: 0; color: var(--ff-accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-reveal-svg-draw__head h2 { margin: 0.4rem 0 0; font-size: clamp(1.6rem, 4.2cqw, 2.8rem); letter-spacing: -0.03em; line-height: 1.05; }
+.ff-reveal-svg-draw__figure { width: 100%; max-width: 62rem; margin: 0 auto; }
+.ff-reveal-svg-draw__figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ff-reveal-svg-draw__ghost { fill: none; stroke: color-mix(in oklab, var(--ff-fg) 14%, transparent); stroke-width: var(--ff-sw); stroke-linecap: round; }
+/* Segment k draws during its own slice of the progress range. Without JS --ff-p defaults to 1 (fully drawn). */
+.ff-reveal-svg-draw__line {
+  fill: none; stroke: var(--ff-accent); stroke-width: var(--ff-sw); stroke-linecap: round;
+  stroke-dasharray: 1; 
+  --seg: clamp(0, calc((var(--ff-p, 1) - var(--ff-start)) / var(--ff-span) * var(--ff-n) - var(--k)), 1);
+  stroke-dashoffset: calc(1 - var(--seg));
+}
+.ff-reveal-svg-draw__node circle { fill: var(--ff-bg); stroke: var(--ff-accent); stroke-width: var(--ff-sw); }
+.ff-reveal-svg-draw__node text { font-size: 15px; font-weight: 700; fill: var(--ff-fg); }
+.ff-reveal-svg-draw__node {
+  --reach: clamp(0, calc((var(--ff-p, 1) - var(--ff-start)) / var(--ff-span) * var(--ff-n) - var(--k) + 0.15) * 6, 1);
+  opacity: calc(0.25 + var(--reach) * 0.75);
+  transform: scale(calc(0.7 + var(--reach) * 0.3));
+}
+.ff-reveal-svg-draw__captions { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: clamp(8px, 1.6cqw, 20px); }
+.ff-reveal-svg-draw__captions li { display: grid; gap: 2px; text-align: center; font-size: clamp(0.72rem, 1.5cqw, 0.9rem);
+  --reach: clamp(0, calc((var(--ff-p, 1) - var(--ff-start)) / var(--ff-span) * var(--ff-n) - var(--k) + 0.15) * 6, 1);
+  opacity: calc(0.45 + var(--reach) * 0.55); }
+.ff-reveal-svg-draw__captions strong { font-size: 1.05em; }
+.ff-reveal-svg-draw__captions span { opacity: 0.75; }
+@container (max-width: 560px) {
+  .ff-reveal-svg-draw__captions { grid-template-columns: 1fr !important; text-align: left; }
+  .ff-reveal-svg-draw__captions li { text-align: left; grid-template-columns: auto 1fr; gap: 8px; }
+  .ff-reveal-svg-draw__captions span { display: none; }
+}
+.ff-reveal-svg-draw[data-reduced] .ff-reveal-svg-draw__track { height: auto; }
+.ff-reveal-svg-draw[data-reduced] .ff-reveal-svg-draw__stage { position: static; height: auto; padding-block: 32px; }

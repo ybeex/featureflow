@@ -1,0 +1,21 @@
+.ff-bento-sync-pulse { padding: clamp(22px, 5cqw, 64px) clamp(16px, 4cqw, 56px); }
+.ff-bento-sync-pulse__head { max-width: 44rem; margin: 0 auto clamp(16px, 3cqw, 32px); text-align: center; }
+.ff-bento-sync-pulse__head h2 { margin: 0 0 0.5rem; font-size: clamp(1.5rem, 3.8cqw, 2.6rem); line-height: 1.06; letter-spacing: -0.03em; }
+.ff-bento-sync-pulse__head p { margin: 0; opacity: 0.7; font-size: 0.95rem; }
+.ff-bento-sync-pulse__grid { list-style: none; margin: 0 auto; padding: 0; max-width: 62rem; display: grid; gap: var(--ff-gap); grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "code tickets alerts" "data reports alerts"; grid-auto-rows: minmax(8rem, auto); }
+.ff-bento-sync-pulse__tile { position: relative; display: flex; min-width: 0; }
+.ff-bento-sync-pulse__tile button { all: unset; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; gap: 6px; padding: clamp(14px, 2cqw, 22px); border-radius: var(--ff-radius); background: color-mix(in oklab, var(--ff-fg) 5%, var(--ff-bg)); border: 1px solid color-mix(in oklab, var(--ff-fg) 14%, transparent); cursor: pointer; transition: border-color 0.35s, box-shadow 0.35s, background 0.35s, transform 0.35s; }
+.ff-bento-sync-pulse__tile button:focus-visible { outline: 2px solid var(--ff-accent); outline-offset: 3px; }
+.ff-bento-sync-pulse__tile svg { color: color-mix(in oklab, var(--ff-fg) 70%, transparent); transition: color 0.35s; }
+.ff-bento-sync-pulse__t { font-size: 1.1rem; font-weight: 650; letter-spacing: -0.02em; }
+.ff-bento-sync-pulse__d { font-size: 0.84rem; opacity: 0.7; }
+.ff-bento-sync-pulse__tile[data-lit] svg { color: var(--ff-accent); }
+.ff-bento-sync-pulse[data-link="glow"] .ff-bento-sync-pulse__tile[data-lit] button { border-color: var(--ff-accent); box-shadow: 0 0 0 1px var(--ff-accent), 0 0 28px -6px var(--ff-accent); }
+.ff-bento-sync-pulse[data-link="outline"] .ff-bento-sync-pulse__tile[data-lit] button { border-color: var(--ff-accent); border-style: dashed; }
+.ff-bento-sync-pulse[data-link="fill"] .ff-bento-sync-pulse__tile[data-lit] button { background: color-mix(in oklab, var(--ff-accent) 22%, var(--ff-bg)); border-color: color-mix(in oklab, var(--ff-accent) 60%, transparent); }
+.ff-bento-sync-pulse__tile[data-source] button { transform: translateY(-3px); }
+.ff-bento-sync-pulse__badge { position: absolute; top: 12px; right: 12px; padding: 2px 9px; border-radius: 99px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--ff-accent); color: #10140a; pointer-events: none; }
+.ff-bento-sync-pulse[data-lines] .ff-bento-sync-pulse__grid::before { content: ""; position: absolute; }
+@container (max-width: 620px) { .ff-bento-sync-pulse__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "code tickets" "data reports" "alerts alerts"; } }
+@container (max-width: 380px) { .ff-bento-sync-pulse__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "code" "tickets" "data" "reports" "alerts"; } }
+@media (prefers-reduced-motion: reduce) { .ff-bento-sync-pulse__tile button, .ff-bento-sync-pulse__tile svg { transition: none; } .ff-bento-sync-pulse__tile[data-source] button { transform: none; } }

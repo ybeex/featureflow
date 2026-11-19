@@ -1,0 +1,18 @@
+/* A registered custom property lets the conic gradient's angle be animated by the compositor-friendly CSS engine. */
+@property --ff-cab-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.ff-cards-animated-border { padding: clamp(24px, 5cqw, 72px) clamp(16px, 4cqw, 56px); }
+.ff-cards-animated-border__head h2 { margin: 0 auto clamp(18px, 3cqw, 36px); max-width: 36rem; text-align: center; font-size: clamp(1.6rem, 4cqw, 2.8rem); line-height: 1.05; letter-spacing: -0.035em; }
+.ff-cards-animated-border__grid { list-style: none; margin: 0 auto; padding: 0; max-width: 62rem; display: grid; grid-template-columns: repeat(var(--ff-cols), minmax(0, 1fr)); gap: clamp(12px, 2cqw, 22px); }
+.ff-cards-animated-border__card { position: relative; border-radius: var(--ff-radius); padding: var(--ff-th); background: color-mix(in oklab, var(--ff-fg) 14%, transparent); outline: none; }
+.ff-cards-animated-border__card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: var(--ff-th); background: conic-gradient(from var(--ff-cab-angle), transparent 0deg, var(--ff-a) calc(var(--ff-arc) * 0.5), var(--ff-b) var(--ff-arc), transparent calc(var(--ff-arc) + 1deg)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); mask-composite: exclude; }
+.ff-cards-animated-border[data-run] .ff-cards-animated-border__card::before { animation: ff-cards-animated-border-spin var(--ff-dur) linear infinite; }
+.ff-cards-animated-border[data-run][data-hover-only] .ff-cards-animated-border__card::before { animation-play-state: paused; opacity: 0.25; transition: opacity 0.3s; }
+.ff-cards-animated-border[data-run][data-hover-only] .ff-cards-animated-border__card:is(:hover, :focus-visible)::before { animation-play-state: running; opacity: 1; }
+@keyframes ff-cards-animated-border-spin { to { --ff-cab-angle: 360deg; } }
+.ff-cards-animated-border__body { height: 100%; padding: clamp(16px, 2.4cqw, 28px); border-radius: calc(var(--ff-radius) - var(--ff-th)); background: color-mix(in oklab, var(--ff-fg) 5%, var(--ff-bg)); }
+.ff-cards-animated-border__body svg { color: var(--ff-a); }
+.ff-cards-animated-border__body h3 { margin: 0.8rem 0 0.4rem; font-size: 1.12rem; letter-spacing: -0.02em; }
+.ff-cards-animated-border__body p { margin: 0; font-size: 0.9rem; opacity: 0.7; }
+.ff-cards-animated-border__card:focus-visible { box-shadow: 0 0 0 3px color-mix(in oklab, var(--ff-a) 60%, transparent); }
+@supports not (mask-composite: exclude) { .ff-cards-animated-border__card::before { display: none; } }
+@container (max-width: 640px) { .ff-cards-animated-border__grid { grid-template-columns: minmax(0, 1fr); max-width: 28rem; } }

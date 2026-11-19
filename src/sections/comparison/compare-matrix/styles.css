@@ -1,0 +1,24 @@
+.ff-compare-matrix { padding: clamp(22px, 5cqw, 64px) clamp(14px, 4cqw, 56px); }
+.ff-compare-matrix__head { max-width: 56rem; margin: 0 auto 16px; }
+.ff-compare-matrix__head h2 { margin: 0; font-size: clamp(1.5rem, 3.8cqw, 2.6rem); letter-spacing: -0.03em; }
+.ff-compare-matrix__head p { margin: 0.3rem 0 0; opacity: 0.7; }
+.ff-compare-matrix__scroll { max-width: 56rem; margin: 0 auto; position: relative; overflow: auto; max-height: calc(var(--vp-h, 100vh) * 0.82); border-radius: var(--ff-radius); background: #fff; border: 1px solid rgb(0 0 0 / 0.08); }
+.ff-compare-matrix table { width: 100%; min-width: 30rem; border-collapse: separate; border-spacing: 0; }
+.ff-compare-matrix thead th, .ff-compare-matrix thead td { padding: 16px 12px 12px; text-align: center; vertical-align: bottom; background: #fff; border-bottom: 1px solid rgb(0 0 0 / 0.1); }
+.ff-compare-matrix[data-sticky] thead th, .ff-compare-matrix[data-sticky] thead td { position: sticky; top: 0; z-index: 2; }
+.ff-compare-matrix__tag { display: block; width: max-content; margin: 0 auto 6px; padding: 2px 9px; border-radius: 99px; background: var(--ff-accent); color: #fff; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.ff-compare-matrix__plan { display: block; font-weight: 700; }
+.ff-compare-matrix__price { display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
+.ff-compare-matrix__price small { font-size: 0.75rem; font-weight: 500; opacity: 0.6; }
+.ff-compare-matrix tbody th[scope="row"] { padding: 12px 14px; text-align: left; font-weight: 550; font-size: 0.92rem; }
+.ff-compare-matrix td { padding: 12px; text-align: center; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+.ff-compare-matrix[data-density="compact"] td, .ff-compare-matrix[data-density="compact"] tbody th[scope="row"] { padding-block: 6px; }
+.ff-compare-matrix td svg { display: inline-block; vertical-align: middle; color: var(--ff-accent); }
+.ff-compare-matrix td[data-off] svg { color: color-mix(in oklab, var(--ff-fg) 35%, transparent); }
+.ff-compare-matrix tbody tr:not(.ff-compare-matrix__group) :is(th, td) { border-top: 1px solid rgb(0 0 0 / 0.06); }
+.ff-compare-matrix__group th { padding: 14px 14px 6px; text-align: left; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ff-accent); background: color-mix(in oklab, var(--ff-fg) 3%, #fff); }
+.ff-compare-matrix [data-hi]:is(td, th) { background: color-mix(in oklab, var(--ff-accent) 8%, #fff); }
+.ff-compare-matrix [data-col]:is(td, th) { background: color-mix(in oklab, var(--ff-accent) 14%, #fff); }
+.ff-compare-matrix[data-hover] tbody tr:not(.ff-compare-matrix__group):hover > :is(th, td) { background: color-mix(in oklab, var(--ff-accent) 6%, #fff); }
+.ff-compare-matrix__empty { padding: 24px; text-align: center; opacity: 0.7; }
+.ff-compare-matrix__scroll:focus-visible { outline: 2px solid var(--ff-accent); outline-offset: 2px; }

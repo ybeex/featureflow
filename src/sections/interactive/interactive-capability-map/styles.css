@@ -1,0 +1,32 @@
+.ff-interactive-capability-map { padding: clamp(20px, 4cqw, 56px) clamp(16px, 4cqw, 56px); }
+.ff-interactive-capability-map__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; max-width: 62rem; margin: 0 auto 12px; }
+.ff-interactive-capability-map__head h2 { margin: 0; font-size: clamp(1.4rem, 3.2cqw, 2.3rem); letter-spacing: -0.03em; }
+.ff-interactive-capability-map__filters { display: inline-flex; padding: 3px; border-radius: 99px; background: color-mix(in oklab, var(--ff-fg) 9%, transparent); }
+.ff-interactive-capability-map__filters button { min-height: 36px; padding: 0 14px; border: 0; border-radius: 99px; background: transparent; color: inherit; font: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; }
+.ff-interactive-capability-map__filters button[aria-pressed="true"] { background: var(--ff-accent); color: #04121c; }
+.ff-interactive-capability-map__body { max-width: 62rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(14px, 3cqw, 36px); align-items: center; }
+.ff-interactive-capability-map__svg { width: 100%; max-height: 28rem; }
+.ff-interactive-capability-map__link { stroke: color-mix(in oklab, var(--ff-fg) 22%, transparent); stroke-width: 1; transition: stroke 0.3s, opacity 0.3s; }
+.ff-interactive-capability-map__link[data-hot] { stroke: var(--ff-accent); stroke-width: 2; }
+.ff-interactive-capability-map__link[data-off] { opacity: 0.1; }
+.ff-interactive-capability-map__hub { fill: color-mix(in oklab, var(--ff-fg) 8%, var(--ff-bg)); stroke: color-mix(in oklab, var(--ff-fg) 25%, transparent); }
+.ff-interactive-capability-map__hubtext { fill: var(--ff-fg); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; }
+.ff-interactive-capability-map__node { cursor: pointer; outline: none; transition: opacity 0.3s; }
+.ff-interactive-capability-map__node[data-off] { opacity: 0.12; pointer-events: none; }
+.ff-interactive-capability-map__dot { fill: #38bdf8; transition: r 0.25s; }
+.ff-interactive-capability-map__node[data-group="run"] .ff-interactive-capability-map__dot { fill: #a78bfa; }
+.ff-interactive-capability-map__node[data-group="secure"] .ff-interactive-capability-map__dot { fill: #34d399; }
+.ff-interactive-capability-map__halo { fill: none; stroke: var(--ff-fg); stroke-width: 0; transition: stroke-width 0.2s; }
+.ff-interactive-capability-map__node:focus-visible .ff-interactive-capability-map__halo { stroke-width: 2.5; }
+.ff-interactive-capability-map__node[data-sel] .ff-interactive-capability-map__halo { stroke: var(--ff-accent); stroke-width: 3; }
+.ff-interactive-capability-map__node[data-linked] .ff-interactive-capability-map__halo { stroke: color-mix(in oklab, var(--ff-fg) 55%, transparent); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.ff-interactive-capability-map__label { fill: var(--ff-fg); font-size: 11px; font-weight: 600; }
+.ff-interactive-capability-map__detail { padding: clamp(14px, 2.4cqw, 26px); border-radius: var(--ff-radius); background: color-mix(in oklab, var(--ff-fg) 6%, var(--ff-bg)); border: 1px solid color-mix(in oklab, var(--ff-fg) 14%, transparent); min-height: 11rem; }
+.ff-interactive-capability-map__detail p { margin: 0; font-size: 0.92rem; opacity: 0.8; }
+.ff-interactive-capability-map__detail p[data-group] { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 1; color: #38bdf8; }
+.ff-interactive-capability-map__detail p[data-group="run"] { color: #a78bfa; }
+.ff-interactive-capability-map__detail p[data-group="secure"] { color: #34d399; }
+.ff-interactive-capability-map__detail h3 { margin: 0.3rem 0 0.5rem; font-size: 1.4rem; letter-spacing: -0.025em; }
+.ff-interactive-capability-map__rel { margin-top: 0.8rem !important; font-size: 0.82rem !important; opacity: 0.6 !important; }
+@container (max-width: 640px) { .ff-interactive-capability-map__body { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .ff-interactive-capability-map__link, .ff-interactive-capability-map__node, .ff-interactive-capability-map__halo { transition: none; } }

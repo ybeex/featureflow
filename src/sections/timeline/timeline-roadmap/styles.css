@@ -1,0 +1,34 @@
+.ff-timeline-roadmap { padding: clamp(20px, 4cqw, 56px) clamp(14px, 4cqw, 56px); }
+.ff-timeline-roadmap__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; max-width: 62rem; margin: 0 auto 16px; }
+.ff-timeline-roadmap__head h2 { margin: 0; font-size: clamp(1.4rem, 3.4cqw, 2.3rem); letter-spacing: -0.03em; }
+.ff-timeline-roadmap__filters { display: inline-flex; padding: 3px; border-radius: 99px; background: color-mix(in oklab, var(--ff-fg) 8%, transparent); }
+.ff-timeline-roadmap__filters button { min-height: 36px; padding: 0 14px; border: 0; border-radius: 99px; background: transparent; color: inherit; font: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; }
+.ff-timeline-roadmap__filters button[aria-pressed="true"] { background: #fff; box-shadow: 0 1px 3px rgb(0 0 0 / 0.15); color: var(--ff-accent); }
+.ff-timeline-roadmap__board { max-width: 62rem; margin: 0 auto; border-radius: calc(var(--ff-radius) + 6px); background: #fff; border: 1px solid rgb(0 0 0 / 0.08); overflow: hidden; }
+.ff-timeline-roadmap__quarters { display: grid; grid-template-columns: 6.5rem repeat(var(--ff-q), minmax(0, 1fr)); border-bottom: 1px solid rgb(0 0 0 / 0.08); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; }
+.ff-timeline-roadmap__quarters span { padding: 10px 12px; border-left: 1px solid rgb(0 0 0 / 0.06); opacity: 0.7; }
+.ff-timeline-roadmap__quarters span:first-child { border-left: 0; }
+.ff-timeline-roadmap__lane { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); border-top: 1px solid rgb(0 0 0 / 0.06); }
+.ff-timeline-roadmap__lane h3 { margin: 0; padding: 14px 12px; font-size: 0.86rem; }
+.ff-timeline-roadmap__track { position: relative; display: grid; grid-template-columns: repeat(var(--ff-q), minmax(0, 1fr)); grid-auto-rows: var(--ff-row); align-content: start; gap: 6px 0; padding: 8px 0; min-height: calc(var(--ff-row) + 16px); background-image: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--ff-q) - 1px), rgb(0 0 0 / 0.06) calc(100% / var(--ff-q) - 1px) calc(100% / var(--ff-q))); }
+.ff-timeline-roadmap__bar { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; margin: 0 4px; padding: 0 12px; min-width: 0; border-radius: var(--ff-radius); font-size: 0.82rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; transition: transform 0.2s, box-shadow 0.2s; }
+.ff-timeline-roadmap__bar:focus-visible { outline: 2px solid var(--ff-accent); outline-offset: 2px; }
+.ff-timeline-roadmap__bar:hover { transform: translateY(-1px); }
+.ff-timeline-roadmap__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ff-timeline-roadmap__dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.ff-timeline-roadmap__bar[data-status="shipped"] { background: #dcfce7; color: #14532d; border-color: #86efac; }
+.ff-timeline-roadmap__bar[data-status="building"] { background: #dbeafe; color: #1e3a8a; border-color: #93c5fd; }
+.ff-timeline-roadmap__bar[data-status="planned"] { background: #fff; color: #44403c; border: 1.5px dashed #a8a29e; }
+.ff-timeline-roadmap__bar[data-sel] { box-shadow: 0 0 0 2px var(--ff-accent); }
+.ff-timeline-roadmap__none { grid-column: 1 / -1; margin: 0; padding: 10px 12px; font-size: 0.8rem; opacity: 0.55; }
+.ff-timeline-roadmap__detail { max-width: 62rem; margin: 12px auto 0; padding: 14px 18px; border-radius: var(--ff-radius); background: #fff; border: 1px solid rgb(0 0 0 / 0.08); min-height: 5.5rem; }
+.ff-timeline-roadmap__detail h3 { margin: 0.2rem 0; font-size: 1.05rem; }
+.ff-timeline-roadmap__detail p { margin: 0; font-size: 0.88rem; }
+.ff-timeline-roadmap__detail p[data-status] { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ff-accent); }
+.ff-timeline-roadmap__hint { opacity: 0.6; }
+.ff-timeline-roadmap__legend { display: flex; gap: 16px; justify-content: center; list-style: none; margin: 12px 0 0; padding: 0; font-size: 0.78rem; }
+.ff-timeline-roadmap__legend li::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -2px; border-radius: 3px; background: #dcfce7; border: 1px solid #86efac; }
+.ff-timeline-roadmap__legend li[data-status="building"]::before { background: #dbeafe; border-color: #93c5fd; }
+.ff-timeline-roadmap__legend li[data-status="planned"]::before { background: #fff; border: 1.5px dashed #a8a29e; }
+@container (max-width: 560px) { .ff-timeline-roadmap__quarters, .ff-timeline-roadmap__lane { grid-template-columns: 4.5rem minmax(0, 1fr); } .ff-timeline-roadmap__bar { padding: 0 8px; font-size: 0.74rem; } .ff-timeline-roadmap__dot { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ff-timeline-roadmap__bar { transition: none; } .ff-timeline-roadmap__bar:hover { transform: none; } }

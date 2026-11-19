@@ -1,0 +1,133 @@
+/* Static layout first (server render, no JS, reduced motion): a readable list of cards. */
+.ff-stack-perspective-depth {
+  --ff-pad: clamp(20px, 5cqw, 64px);
+  --ff-len: var(--ff-len-cfg, 4);
+  --ff-ch: clamp(250px, calc(var(--vp-h, 100vh) * 0.44), 340px);
+  overflow-x: clip;
+}
+.ff-stack-perspective-depth__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(24px, 5cqw, 72px);
+  align-items: center;
+  padding: var(--ff-pad);
+}
+.ff-stack-perspective-depth__eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--ff-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.ff-stack-perspective-depth__copy h2 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.8rem, 4.2cqw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+.ff-stack-perspective-depth__lede { margin: 0; max-width: 30rem; opacity: 0.78; }
+.ff-stack-perspective-depth__counter {
+  display: none;
+  margin: 1.6rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in oklab, var(--ff-fg) 16%, transparent);
+  font-size: 0.85rem;
+  gap: 0.2rem;
+  flex-direction: column;
+}
+.ff-stack-perspective-depth__counter span { opacity: 0.7; font-variant-numeric: tabular-nums; }
+.ff-stack-perspective-depth__counter strong { font-size: 1.15rem; letter-spacing: -0.01em; color: var(--ff-accent); }
+.ff-stack-perspective-depth__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.ff-stack-perspective-depth__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34%;
+  gap: clamp(14px, 3cqw, 28px);
+  padding: clamp(16px, 2.6cqw, 28px);
+  border-radius: var(--ff-radius);
+  background: var(--ff-surface);
+  border: 1px solid color-mix(in oklab, var(--ff-fg) 12%, transparent);
+  overflow: hidden;
+}
+.ff-stack-perspective-depth__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  color: var(--ff-bg);
+  background: var(--ff-accent);
+}
+.ff-stack-perspective-depth__kicker {
+  margin: 0.9rem 0 0.2rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.66;
+}
+.ff-stack-perspective-depth__card h3 { margin: 0 0 0.4rem; font-size: clamp(1.1rem, 2.2cqw, 1.5rem); line-height: 1.15; letter-spacing: -0.02em; }
+.ff-stack-perspective-depth__body p:not(.ff-stack-perspective-depth__kicker) { margin: 0; font-size: 0.92rem; opacity: 0.8; }
+.ff-stack-perspective-depth__stat {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 99px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  background: color-mix(in oklab, var(--ff-accent) 22%, transparent);
+}
+.ff-stack-perspective-depth__art { width: 100%; height: 100%; border-radius: calc(var(--ff-radius) * 0.6); object-fit: cover; align-self: stretch; }
+
+/* Armed: a pinned stage and a real 3D deck, driven by --ff-p (0 to 1) written by useScrollVar. */
+.ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__track { height: calc(var(--vp-h, 100vh) * var(--ff-len)); }
+.ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__stage {
+  position: sticky;
+  top: 0;
+  height: var(--vp-h, 100vh);
+  overflow: hidden;
+}
+.ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__counter { display: flex; }
+.ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__deck {
+  perspective: var(--ff-persp);
+  perspective-origin: 50% 8%;
+  padding-top: calc(var(--ff-rise) * 3.2);
+}
+.ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__list {
+  position: relative;
+  display: block;
+  width: min(100%, 36rem);
+  height: var(--ff-ch);
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+.ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__card {
+  /* d: signed distance from the front. 0 = front, 1 = one step back, negative = already lifted away. */
+  --d: calc(var(--i) - var(--ff-p, 0) * var(--nm1));
+  --dp: max(var(--d), 0);
+  --dn: min(var(--d), 0);
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  transform:
+    translate3d(0, calc(var(--dp) * var(--ff-rise) * -1 + var(--dn) * 70%), calc(var(--dp) * var(--ff-step) * -1))
+    rotateX(calc(var(--ff-tilt) * (min(var(--dp), 1) - max(var(--dn), -1))))
+    scale(calc(1 - var(--dp) * 0.015));
+  opacity: clamp(0, calc(1 - max(var(--dp) - 1, 0) * var(--ff-fade) + min(var(--dn) + 0.2, 0) * 5), 1);
+  pointer-events: none;
+  will-change: transform, opacity;
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7);
+  background: color-mix(in oklab, var(--ff-accent) calc(var(--dp) * -2% + 9%), var(--ff-surface));
+}
+
+@container (max-width: 720px) {
+  .ff-stack-perspective-depth { --ff-len: min(var(--ff-len-cfg, 4), 3); --ff-ch: clamp(250px, calc(var(--vp-h, 100vh) * 0.4), 300px); }
+  .ff-stack-perspective-depth__stage { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__stage { align-content: start; padding-top: 22px; }
+  .ff-stack-perspective-depth__copy h2 { font-size: 1.6rem; }
+  .ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__lede { display: none; }
+  .ff-stack-perspective-depth__counter { margin-top: 0.8rem; padding-top: 0.6rem; }
+  .ff-stack-perspective-depth__card { grid-template-columns: minmax(0, 1fr); }
+  .ff-stack-perspective-depth__art { display: none; }
+  .ff-stack-perspective-depth[data-armed] .ff-stack-perspective-depth__deck { padding-top: calc(var(--ff-rise) * 2.4); }
+}

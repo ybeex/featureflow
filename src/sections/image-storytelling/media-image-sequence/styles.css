@@ -1,0 +1,10 @@
+.ff-media-image-sequence__track { height: calc(var(--vp-h, 100vh) * (1 + var(--ff-len))); }
+.ff-media-image-sequence__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.ff-media-image-sequence__stage header { padding: clamp(16px, 4cqw, 48px) clamp(16px, 4cqw, 48px) 0; text-align: center; }
+.ff-media-image-sequence__stage h2 { margin: 0; font-size: clamp(1.6rem, 4.6cqw, 3.2rem); letter-spacing: -0.04em; line-height: 1; }
+.ff-media-image-sequence__stage header p { margin: 0.4rem 0 0; opacity: 0.65; font-size: 0.92rem; }
+.ff-media-image-sequence__canvas { width: 100%; height: 100%; min-height: 0; display: block; color: var(--ff-fg); }
+.ff-media-image-sequence__counter { position: absolute; left: clamp(16px, 4cqw, 48px); bottom: clamp(14px, 3cqw, 32px); margin: 0; font-size: 0.78rem; font-variant-numeric: tabular-nums; letter-spacing: 0.06em; opacity: 0.8; }
+.ff-media-image-sequence__counter b { color: var(--ff-accent); font-weight: 700; }
+.ff-media-image-sequence[data-reduced] .ff-media-image-sequence__track { height: auto; }
+.ff-media-image-sequence[data-reduced] .ff-media-image-sequence__stage { position: relative; height: calc(var(--vp-h, 100vh) * 0.9); }

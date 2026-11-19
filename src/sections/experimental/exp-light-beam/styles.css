@@ -1,0 +1,17 @@
+.ff-exp-light-beam { background: var(--ff-bg); color: var(--ff-fg); }
+.ff-exp-light-beam__stage { --bx: 50%; --by: 45%; position: relative; min-height: var(--vp-h, 100vh); display: grid; align-items: center; padding: clamp(32px, 8cqw, 96px) clamp(20px, 7cqw, 96px); overflow: hidden; cursor: crosshair; }
+/* The text is always present at full contrast in the DOM. The beam works by dimming everything except a moving hole. */
+.ff-exp-light-beam__copy { position: relative; max-width: 60rem; margin-inline: auto; width: 100%; }
+.ff-exp-light-beam__copy p { margin: 0 0 0.8rem; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--ff-tint); }
+.ff-exp-light-beam__copy h2 { margin: 0 0 clamp(20px, 4cqw, 44px); font-size: clamp(2rem, 8cqw, 5.4rem); line-height: 1; letter-spacing: -0.04em; text-wrap: balance; }
+.ff-exp-light-beam__copy ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: clamp(16px, 3cqw, 36px); }
+.ff-exp-light-beam__copy h3 { margin: 0 0 0.4rem; font-size: 1.2rem; letter-spacing: -0.02em; }
+.ff-exp-light-beam__copy span { font-size: 0.95rem; line-height: 1.55; }
+/* Shade: transparent inside the beam, (1 - ambient) of the background colour outside. softness widens the falloff. */
+.ff-exp-light-beam__glow { position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    radial-gradient(circle calc(var(--ff-r) * 1.7) at var(--bx) var(--by), color-mix(in oklab, var(--ff-tint) 20%, transparent), transparent 70%),
+    radial-gradient(circle var(--ff-r) at var(--bx) var(--by), transparent calc((1 - var(--ff-soft)) * 70%), color-mix(in oklab, var(--ff-bg) calc((1 - var(--ff-amb)) * 100%), transparent) 100%); }
+.ff-exp-light-beam[data-reduced] .ff-exp-light-beam__glow { display: none; }
+.ff-exp-light-beam[data-reduced] .ff-exp-light-beam__stage { cursor: auto; min-height: 0; }
+@media (hover: none) { .ff-exp-light-beam__stage { cursor: auto; } }

@@ -1,0 +1,31 @@
+.ff-interactive-product-states { padding: clamp(20px, 4cqw, 56px) clamp(16px, 4cqw, 56px); }
+.ff-interactive-product-states__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; max-width: 56rem; margin: 0 auto 16px; }
+.ff-interactive-product-states__head h2 { margin: 0; max-width: 28rem; font-size: clamp(1.4rem, 3.2cqw, 2.3rem); line-height: 1.08; letter-spacing: -0.03em; }
+.ff-interactive-product-states__seg { display: inline-flex; padding: 3px; border-radius: 99px; background: color-mix(in oklab, var(--ff-fg) 9%, transparent); }
+.ff-interactive-product-states__seg button { min-height: 36px; padding: 0 14px; border: 0; border-radius: 99px; background: transparent; color: inherit; font: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; }
+.ff-interactive-product-states__seg button[aria-pressed="true"] { background: #fff; color: var(--ff-accent); box-shadow: 0 1px 3px rgb(0 0 0 / 0.18); }
+.ff-interactive-product-states__stage { max-width: 56rem; margin: 0 auto; }
+.ff-interactive-product-states__app { --pf: #fff; --pt: #111827; --pm: #6b7280; --pl: #e5e7eb; border-radius: var(--ff-radius); overflow: hidden; background: var(--pf); color: var(--pt); border: 1px solid var(--pl); box-shadow: 0 24px 40px -28px rgb(15 23 42 / 0.4); }
+.ff-interactive-product-states[data-theme="dark"] .ff-interactive-product-states__app { --pf: #151a24; --pt: #e8ecf4; --pm: #8a94a8; --pl: #263041; }
+.ff-interactive-product-states__bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--pl); }
+.ff-interactive-product-states__bar button { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--pl); background: transparent; color: inherit; font: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+.ff-interactive-product-states__content { min-height: 17rem; }
+.ff-interactive-product-states__center { display: grid; justify-items: center; align-content: center; gap: 6px; min-height: 17rem; padding: 24px; text-align: center; color: var(--pm); }
+.ff-interactive-product-states__center h3 { margin: 6px 0 0; color: var(--pt); font-size: 1.1rem; }
+.ff-interactive-product-states__center p { margin: 0; max-width: 24rem; font-size: 0.9rem; }
+.ff-interactive-product-states__content[data-state="error"] .ff-interactive-product-states__center svg { color: #ef4444; }
+.ff-interactive-product-states__cta { margin-top: 10px; min-height: 40px; padding: 0 18px; border: 0; border-radius: 10px; background: var(--ff-accent); color: #fff; font: inherit; font-weight: 650; cursor: pointer; }
+.ff-interactive-product-states__list { list-style: none; margin: 0; padding: 0; }
+.ff-interactive-product-states__list li { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 6rem; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--pl); font-size: 0.9rem; }
+.ff-interactive-product-states__list li span:nth-child(2) { color: var(--pm); }
+.ff-interactive-product-states__list em { justify-self: start; padding: 2px 10px; border-radius: 99px; font-style: normal; font-size: 0.74rem; font-weight: 700; background: #dcfce7; color: #166534; }
+.ff-interactive-product-states__list em[data-s="At risk"] { background: #fef3c7; color: #92400e; }
+.ff-interactive-product-states__list em[data-s="Blocked"] { background: #fee2e2; color: #991b1b; }
+.ff-interactive-product-states__list em[data-s="Planned"] { background: #e0e7ff; color: #3730a3; }
+.ff-interactive-product-states__list li.is-skel i { display: block; height: 14px; border-radius: 6px; background: linear-gradient(90deg, var(--pl) 25%, color-mix(in oklab, var(--pl) 50%, var(--pf)) 50%, var(--pl) 75%); background-size: 300% 100%; animation: ff-interactive-product-states-shimmer 1.4s linear infinite; }
+.ff-interactive-product-states__list li.is-skel i:nth-child(2) { width: 70%; }
+.ff-interactive-product-states__list li.is-skel i:nth-child(3) { width: 60%; height: 20px; border-radius: 99px; }
+@keyframes ff-interactive-product-states-shimmer { to { background-position: -300% 0; } }
+.ff-interactive-product-states__note { margin: 12px 4px 0; font-size: 0.9rem; opacity: 0.8; min-height: 2.8rem; }
+@container (max-width: 480px) { .ff-interactive-product-states__list li { grid-template-columns: minmax(0, 1fr) 5.5rem; } .ff-interactive-product-states__list li span:nth-child(2) { display: none; } .ff-interactive-product-states__list li.is-skel i:nth-child(2) { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ff-interactive-product-states__list li.is-skel i { animation: none; } }

@@ -1,0 +1,19 @@
+.ff-cards-tilt-3d { padding: clamp(24px, 5cqw, 72px) clamp(16px, 4cqw, 56px); }
+.ff-cards-tilt-3d__head h2 { margin: 0 auto clamp(20px, 4cqw, 44px); max-width: 36rem; text-align: center; font-size: clamp(1.6rem, 4cqw, 2.8rem); line-height: 1.05; letter-spacing: -0.035em; }
+.ff-cards-tilt-3d__grid { list-style: none; margin: 0 auto; padding: 0; max-width: 62rem; display: grid; grid-template-columns: repeat(var(--ff-cols), minmax(0, 1fr)); gap: clamp(14px, 2.4cqw, 28px); }
+.ff-cards-tilt-3d__slot { perspective: var(--ff-persp); }
+.ff-cards-tilt-3d__card { position: relative; height: 100%; padding: 12px 12px 20px; border-radius: var(--ff-radius); background: color-mix(in oklab, var(--ff-fg) 7%, var(--ff-bg)); border: 1px solid color-mix(in oklab, var(--ff-fg) 14%, transparent); transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s; outline: none; box-shadow: 0 16px 30px -22px rgb(0 0 0 / 0.8); }
+.ff-cards-tilt-3d[data-on] .ff-cards-tilt-3d__card:hover { transition: transform 0.08s linear, box-shadow 0.5s; box-shadow: 0 30px 50px -26px rgb(0 0 0 / 0.9); }
+.ff-cards-tilt-3d__card:focus-visible { box-shadow: 0 0 0 3px color-mix(in oklab, var(--ff-accent) 70%, transparent); }
+.ff-cards-tilt-3d__art { border-radius: calc(var(--ff-radius) - 8px); width: 100%; }
+.ff-cards-tilt-3d__text { padding: 14px 8px 0; }
+.ff-cards-tilt-3d__text h3 { margin: 0 0 0.3rem; font-size: 1.2rem; letter-spacing: -0.02em; }
+.ff-cards-tilt-3d__text p { margin: 0; font-size: 0.9rem; opacity: 0.7; }
+/* Layers pushed toward the viewer by translateZ give parallax-like depth as the card rotates. */
+.ff-cards-tilt-3d[data-depth] .ff-cards-tilt-3d__art { transform: translateZ(var(--ff-lift)); }
+.ff-cards-tilt-3d[data-depth] .ff-cards-tilt-3d__text { transform: translateZ(calc(var(--ff-lift) * 1.6)); }
+.ff-cards-tilt-3d__glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.4s; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgb(255 255 255 / 0.28), transparent 55%); }
+@media (hover: hover) { .ff-cards-tilt-3d[data-on][data-glare] .ff-cards-tilt-3d__card:hover .ff-cards-tilt-3d__glare { opacity: 1; } }
+@container (max-width: 640px) { .ff-cards-tilt-3d__grid { grid-template-columns: minmax(0, 1fr); max-width: 26rem; } }
+.ff-cards-tilt-3d:not([data-on]) .ff-cards-tilt-3d__card { transform: none; }
+.ff-cards-tilt-3d:not([data-on]) .ff-cards-tilt-3d__art, .ff-cards-tilt-3d:not([data-on]) .ff-cards-tilt-3d__text { transform: none; }

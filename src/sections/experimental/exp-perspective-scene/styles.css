@@ -1,0 +1,21 @@
+.ff-exp-perspective-scene__track { height: calc(var(--vp-h, 100vh) * (1 + var(--ff-len))); }
+.ff-exp-perspective-scene__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; perspective: var(--ff-persp); perspective-origin: 50% 46%; }
+.ff-exp-perspective-scene__title { position: absolute; z-index: 5; top: 5%; left: 0; right: 0; margin: 0; text-align: center; font-size: clamp(0.8rem, 1.8cqw, 1rem); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; opacity: calc(0.8 - var(--ff-p, 0) * 2); pointer-events: none; }
+.ff-exp-perspective-scene__world { position: absolute; inset: 0; transform-style: preserve-3d; }
+/* The whole rail moves toward the camera: translateZ grows with progress by the distance spanned by the panels. */
+.ff-exp-perspective-scene__rail { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; transform-style: preserve-3d; transform: translate3d(0, 0, calc(var(--ff-p, 0) * (var(--ff-n) - 1) * var(--ff-gap))); }
+.ff-exp-perspective-scene__panel { position: absolute; left: 50%; top: 50%; width: min(34rem, 56cqw); margin: calc(min(34rem, 56cqw) * -0.25) 0 0 calc(min(34rem, 56cqw) * -0.5); padding: 10px 10px 16px; border-radius: 18px; background: color-mix(in oklab, var(--ff-fg) 8%, var(--ff-bg)); border: 1px solid color-mix(in oklab, var(--ff-fg) 16%, transparent); transform: translate3d(calc(var(--side) * var(--ff-sway) * 1cqw), 0, calc(var(--i) * var(--ff-gap) * -1)) rotateY(calc(var(--side) * -10deg)); backface-visibility: hidden; }
+/* Fog: opacity falls with distance behind the focus plane; panels that have flown past the camera dissolve within one step so they never fill the frame. */
+.ff-exp-perspective-scene__panel { --d: calc(var(--i) - var(--ff-p, 0) * (var(--ff-n) - 1)); opacity: calc((1 - var(--ff-fog) * min(1, max(var(--d), 0) * 0.38)) * (1 - min(1, max(calc(var(--d) * -1), 0) * 2.2))); }
+.ff-exp-perspective-scene__panel :is(div) { padding: 12px 6px 0; }
+.ff-exp-perspective-scene__art { width: 100%; border-radius: 10px; }
+.ff-exp-perspective-scene__panel b { color: var(--ff-accent); font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.ff-exp-perspective-scene__panel h3 { margin: 0.1rem 0 0.2rem; font-size: 1.15rem; letter-spacing: -0.02em; }
+.ff-exp-perspective-scene__panel p { margin: 0; font-size: 0.86rem; opacity: 0.75; }
+.ff-exp-perspective-scene[data-reduced] .ff-exp-perspective-scene__track { height: auto; }
+.ff-exp-perspective-scene[data-reduced] .ff-exp-perspective-scene__stage { position: static; height: auto; perspective: none; overflow: visible; padding: 24px clamp(16px, 4cqw, 48px); }
+.ff-exp-perspective-scene[data-reduced] .ff-exp-perspective-scene__title { position: static; opacity: 1; margin-bottom: 16px; }
+.ff-exp-perspective-scene[data-reduced] .ff-exp-perspective-scene__world, .ff-exp-perspective-scene[data-reduced] .ff-exp-perspective-scene__rail { position: static; transform: none; }
+.ff-exp-perspective-scene[data-reduced] .ff-exp-perspective-scene__rail { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.ff-exp-perspective-scene[data-reduced] .ff-exp-perspective-scene__panel { position: static; width: auto; margin: 0; transform: none; opacity: 1; }
+@container (max-width: 560px) { .ff-exp-perspective-scene__panel { width: 74cqw; margin: calc(74cqw * -0.25) 0 0 calc(74cqw * -0.5); transform: translate3d(0, 0, calc(var(--i) * var(--ff-gap) * -1)); } }

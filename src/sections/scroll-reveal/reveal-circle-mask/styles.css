@@ -1,0 +1,20 @@
+.ff-reveal-circle-mask__track { height: calc(var(--vp-h, 100vh) * var(--ff-len)); }
+.ff-reveal-circle-mask__stage { --e: clamp(0, calc((var(--ff-p, 1) - var(--ff-start)) / var(--ff-span)), 1); position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; }
+.ff-reveal-circle-mask__base { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 24px; opacity: calc(1 - var(--e) * 0.9); }
+.ff-reveal-circle-mask__eyebrow { margin: 0 0 10px; color: var(--ff-accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-reveal-circle-mask__base h2, .ff-reveal-circle-mask__text h2 { margin: 0; font-size: clamp(1.8rem, 6cqw, 4.2rem); line-height: 1.02; letter-spacing: -0.035em; max-width: 14ch; margin-inline: auto; }
+.ff-reveal-circle-mask__reveal { position: absolute; inset: 0; color: #fff; will-change: clip-path;
+  clip-path: circle(calc(var(--ff-r0) * 1% + var(--e) * (75 - var(--ff-r0)) * 1%) at 50% 50%); }
+.ff-reveal-circle-mask[data-shape="wipe"] .ff-reveal-circle-mask__reveal { clip-path: inset(0 calc((1 - var(--e)) * 100%) 0 0); }
+.ff-reveal-circle-mask[data-shape="curtain"] .ff-reveal-circle-mask__reveal { clip-path: inset(calc((1 - var(--e)) * 50%) 0 calc((1 - var(--e)) * 50%) 0); }
+.ff-reveal-circle-mask[data-shape="diagonal"] .ff-reveal-circle-mask__reveal { clip-path: polygon(0 0, calc(var(--e) * 200%) 0, calc(var(--e) * 200% - 100%) 100%, 0 100%); }
+.ff-reveal-circle-mask__art { position: absolute; inset: 0; height: 100%; aspect-ratio: auto !important; }
+.ff-reveal-circle-mask__scrim { position: absolute; inset: 0; background: rgb(8 8 12 / var(--ff-scrim)); }
+.ff-reveal-circle-mask__text { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 24px; gap: 12px; }
+.ff-reveal-circle-mask__text > p:last-child { margin: 8px auto 0; max-width: 34rem; opacity: 0.9; font-size: clamp(0.9rem, 1.8cqw, 1.1rem); }
+@container (max-width: 560px) { .ff-reveal-circle-mask__base h2, .ff-reveal-circle-mask__text h2 { font-size: 1.9rem; } }
+/* Reduced motion: no pinning. The "after" panel is shown in full beneath a plain statement. */
+.ff-reveal-circle-mask[data-reduced] .ff-reveal-circle-mask__track { height: auto; }
+.ff-reveal-circle-mask[data-reduced] .ff-reveal-circle-mask__stage { position: static; height: auto; overflow: visible; }
+.ff-reveal-circle-mask[data-reduced] .ff-reveal-circle-mask__base { display: none; }
+.ff-reveal-circle-mask[data-reduced] .ff-reveal-circle-mask__reveal { position: relative; clip-path: none; min-height: calc(var(--vp-h, 100vh) * 0.7); }

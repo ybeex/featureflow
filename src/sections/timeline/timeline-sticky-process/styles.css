@@ -1,0 +1,29 @@
+.ff-timeline-sticky-process__track { height: calc(var(--vp-h, 100vh) * (1 + (var(--ff-n) - 1) * var(--ff-len))); }
+.ff-timeline-sticky-process__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 4cqw, 44px); padding: clamp(16px, 4cqw, 56px); overflow: hidden; }
+.ff-timeline-sticky-process__title { margin: 0; text-align: center; font-size: clamp(1.4rem, 3.6cqw, 2.4rem); letter-spacing: -0.03em; line-height: 1.05; }
+.ff-timeline-sticky-process__steps { position: relative; list-style: none; margin: 0 auto; padding: 0; width: 100%; max-width: 56rem; display: grid; grid-template-columns: repeat(var(--ff-n), minmax(0, 1fr)); }
+.ff-timeline-sticky-process__steps > li:not(.ff-timeline-sticky-process__line) { position: relative; z-index: 1; display: grid; justify-items: center; gap: 8px; text-align: center; }
+.ff-timeline-sticky-process__node { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--ff-bg); border: 2px solid color-mix(in oklab, var(--ff-fg) 25%, transparent); color: color-mix(in oklab, var(--ff-fg) 60%, transparent); transition: background 0.4s, border-color 0.4s, color 0.4s, transform 0.4s; }
+li[data-state="done"] .ff-timeline-sticky-process__node { background: var(--ff-accent); border-color: var(--ff-accent); color: #1b1303; }
+li[data-state="active"] .ff-timeline-sticky-process__node { border-color: var(--ff-accent); color: var(--ff-accent); transform: scale(1.12); box-shadow: 0 0 0 6px color-mix(in oklab, var(--ff-accent) 22%, transparent); }
+.ff-timeline-sticky-process__label { font-size: 0.8rem; font-weight: 600; opacity: 0.6; padding: 0 4px; }
+li[data-state="active"] .ff-timeline-sticky-process__label { opacity: 1; }
+.ff-timeline-sticky-process__label b { display: block; color: var(--ff-accent); font-variant-numeric: tabular-nums; }
+.ff-timeline-sticky-process__line { position: absolute; left: calc(50% / var(--ff-n)); right: calc(50% / var(--ff-n)); top: 21px; height: 2px; background: color-mix(in oklab, var(--ff-fg) 16%, transparent); }
+.ff-timeline-sticky-process__line i { position: absolute; inset: 0; background: var(--ff-accent); transform-origin: 0 50%; transform: scaleX(var(--ff-p, 0)); }
+.ff-timeline-sticky-process__panels { position: relative; max-width: 36rem; width: 100%; margin: 0 auto; min-height: 12rem; }
+.ff-timeline-sticky-process__panel { position: absolute; inset: 0 0 auto 0; padding: clamp(16px, 3cqw, 28px); border-radius: 20px; background: color-mix(in oklab, var(--ff-fg) 6%, var(--ff-bg)); border: 1px solid color-mix(in oklab, var(--ff-fg) 14%, transparent); opacity: 0; visibility: hidden; transition: opacity 0.45s, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s 0.5s; }
+.ff-timeline-sticky-process[data-fx="slide"] .ff-timeline-sticky-process__panel { transform: translateY(24px); }
+.ff-timeline-sticky-process[data-fx="slide"] .ff-timeline-sticky-process__panel[data-past] { transform: translateY(-24px); }
+.ff-timeline-sticky-process__panel[data-on] { opacity: 1; visibility: visible; transform: none; transition: opacity 0.45s, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s; }
+.ff-timeline-sticky-process__count { margin: 0 0 0.4rem; color: var(--ff-accent); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.ff-timeline-sticky-process__panel h3 { margin: 0 0 0.4rem; font-size: clamp(1.2rem, 2.8cqw, 1.8rem); letter-spacing: -0.025em; }
+.ff-timeline-sticky-process__panel p:last-child { margin: 0; opacity: 0.78; }
+@container (max-width: 520px) { .ff-timeline-sticky-process__label { font-size: 0; } .ff-timeline-sticky-process__label b { font-size: 0.8rem; } }
+/* Reduced motion / no pinning: every step is shown in a normal vertical flow. */
+.ff-timeline-sticky-process[data-reduced] .ff-timeline-sticky-process__track { height: auto; }
+.ff-timeline-sticky-process[data-reduced] .ff-timeline-sticky-process__stage { position: static; height: auto; overflow: visible; }
+.ff-timeline-sticky-process[data-reduced] .ff-timeline-sticky-process__panels { display: grid; gap: 12px; min-height: 0; }
+.ff-timeline-sticky-process[data-reduced] .ff-timeline-sticky-process__panel { position: static; opacity: 1; visibility: visible; transform: none; transition: none; }
+.ff-timeline-sticky-process[data-reduced] .ff-timeline-sticky-process__line { display: none; }
+.ff-timeline-sticky-process[data-reduced] li[data-state] .ff-timeline-sticky-process__node { transition: none; }

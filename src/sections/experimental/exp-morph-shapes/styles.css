@@ -1,0 +1,16 @@
+.ff-exp-morph-shapes { background: var(--ff-bg); color: var(--ff-fg); }
+.ff-exp-morph-shapes__track { height: calc(var(--vp-h, 100vh) * (1 + var(--ff-len))); }
+.ff-exp-morph-shapes__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(16px, 4cqw, 56px); padding: 0 clamp(20px, 6cqw, 80px); }
+.ff-exp-morph-shapes__copy p { margin: 0 0 0.6rem; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--ff-a); }
+.ff-exp-morph-shapes__copy h2 { margin: 0 0 1rem; font-size: clamp(1.7rem, 5.6cqw, 3.6rem); line-height: 1.04; letter-spacing: -0.035em; text-wrap: balance; }
+.ff-exp-morph-shapes__copy span { font-size: 0.95rem; opacity: 0.75; }
+.ff-exp-morph-shapes__copy strong { color: var(--ff-fg); font-weight: 700; opacity: 1; }
+.ff-exp-morph-shapes__svg { width: 100%; max-height: calc(var(--vp-h, 100vh) * 0.82); aspect-ratio: 1; justify-self: center; overflow: visible; filter: drop-shadow(0 18px 40px color-mix(in oklab, var(--ff-a) 35%, transparent)); }
+.ff-exp-morph-shapes__svg path { stroke: url(#ff-ems-grad); stroke-width: var(--ff-sw); fill: none; }
+.ff-exp-morph-shapes[data-filled] .ff-exp-morph-shapes__svg path { fill: url(#ff-ems-grad); fill-opacity: 0.9; }
+.ff-exp-morph-shapes[data-reduced] .ff-exp-morph-shapes__track { height: auto; }
+.ff-exp-morph-shapes[data-reduced] .ff-exp-morph-shapes__stage { position: static; height: auto; padding-block: 48px; }
+@container (max-width: 640px) {
+  .ff-exp-morph-shapes__stage { grid-template-columns: minmax(0, 1fr); align-content: center; text-align: center; gap: 8px; }
+  .ff-exp-morph-shapes__svg { max-height: 46%; }
+}

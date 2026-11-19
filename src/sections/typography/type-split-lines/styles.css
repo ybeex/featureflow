@@ -1,0 +1,12 @@
+.ff-type-split-lines { padding: clamp(40px, 9cqw, 120px) clamp(18px, 6cqw, 80px); min-height: 22rem; display: grid; align-items: center; }
+.ff-type-split-lines__inner { max-width: 60rem; margin: 0 auto; }
+.ff-type-split-lines__title { margin: 0; font-size: clamp(2.2rem, calc(var(--ff-fs) * 0.1cqw + 1rem), calc(var(--ff-fs) * 1px)); font-weight: 800; line-height: 1; letter-spacing: -0.05em; }
+/* Each line sits in an overflow-hidden mask; the line itself slides in from below (or above). Padding keeps descenders from clipping. */
+.ff-type-split-lines__mask { display: block; overflow: hidden; padding: 0.06em 0 0.14em; margin: -0.06em 0 -0.14em; }
+.ff-type-split-lines__line { display: block; }
+.ff-type-split-lines__line em { font-style: italic; color: var(--ff-accent); }
+.ff-type-split-lines__sub { margin: clamp(14px, 2.4cqw, 28px) 0 0; font-size: clamp(1rem, 2cqw, 1.4rem); opacity: 0.7; max-width: 30rem; }
+.ff-type-split-lines[data-armed] .ff-type-split-lines__line { transform: translate3d(0, var(--ff-dist), 0); }
+.ff-type-split-lines[data-armed] .ff-type-split-lines__sub { opacity: 0; transform: translate3d(0, 12px, 0); }
+.ff-type-split-lines[data-armed] .ff-type-split-lines__inner[data-visible] .ff-type-split-lines__line { transform: none; transition: transform var(--ff-dur) calc(var(--i) * var(--ff-stagger)) cubic-bezier(0.16, 1, 0.3, 1); }
+.ff-type-split-lines[data-armed] .ff-type-split-lines__inner[data-visible] .ff-type-split-lines__sub { opacity: 0.7; transform: none; transition: opacity var(--ff-dur) calc(var(--i) * var(--ff-stagger)) ease, transform var(--ff-dur) calc(var(--i) * var(--ff-stagger)) cubic-bezier(0.16, 1, 0.3, 1); }

@@ -1,0 +1,31 @@
+.ff-stack-rotate-fan__track { height: calc(var(--vp-h, 100vh) * var(--ff-len)); }
+.ff-stack-rotate-fan__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; display: flex; flex-direction: column; align-items: center; padding-top: clamp(20px, 4cqw, 48px); }
+.ff-stack-rotate-fan__head { text-align: center; padding-inline: 16px; }
+.ff-stack-rotate-fan__head p { margin: 0; color: var(--ff-accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-stack-rotate-fan__head h2 { margin: 0.4rem 0 0; font-size: clamp(1.6rem, 4.4cqw, 3rem); letter-spacing: -0.03em; line-height: 1.05; }
+.ff-stack-rotate-fan__deck { list-style: none; margin: 0; padding: 0; position: absolute; left: 50%; bottom: 0; width: 0; height: 0; }
+.ff-stack-rotate-fan__card {
+  position: absolute; left: calc(var(--ff-w) / -2); bottom: calc(var(--vp-h, 100vh) * 0.13);
+  width: var(--ff-w); min-height: calc(var(--vp-h, 100vh) * 0.46); padding: 20px;
+  border-radius: var(--ff-radius); border: 1px solid color-mix(in oklab, var(--ff-fg) 16%, transparent);
+  background: color-mix(in oklab, var(--ff-accent) calc(10% + var(--i) * 5%), var(--ff-bg));
+  box-shadow: 0 20px 40px -20px #000;
+  /* The fan pivots about a point far below the card, so cards swing on an arc. */
+  transform-origin: 50% calc(100% + var(--ff-pivot));
+  transform: rotate(calc((var(--i) - (var(--ff-n) - 1) / 2) * var(--ff-step) * var(--ff-p, 0) * 1deg));
+  will-change: transform;
+}
+.ff-stack-rotate-fan__k { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ff-accent); }
+.ff-stack-rotate-fan__card h3 { margin: 0.6rem 0 0.4rem; font-size: 1.15rem; line-height: 1.2; letter-spacing: -0.015em; }
+.ff-stack-rotate-fan__card p { margin: 0; font-size: 0.88rem; opacity: 0.78; }
+/* Narrow containers and reduced motion: a plain readable list, no pinned fan. */
+@container (max-width: 640px) {
+  .ff-stack-rotate-fan__track { height: auto; }
+  .ff-stack-rotate-fan__stage { position: static; height: auto; overflow: visible; padding: 24px 16px 32px; }
+  .ff-stack-rotate-fan__deck { position: static; width: auto; height: auto; display: grid; gap: 12px; margin-top: 20px; }
+  .ff-stack-rotate-fan__card { position: static; width: auto; min-height: 0; transform: none; will-change: auto; }
+}
+.ff-stack-rotate-fan[data-reduced] .ff-stack-rotate-fan__track { height: auto; }
+.ff-stack-rotate-fan[data-reduced] .ff-stack-rotate-fan__stage { position: static; height: auto; overflow: visible; padding: 32px 20px; }
+.ff-stack-rotate-fan[data-reduced] .ff-stack-rotate-fan__deck { position: static; width: auto; height: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 14px; margin: 24px auto 0; max-width: 60rem; }
+.ff-stack-rotate-fan[data-reduced] .ff-stack-rotate-fan__card { position: static; width: auto; min-height: 0; transform: none; will-change: auto; }

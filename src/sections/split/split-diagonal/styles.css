@@ -1,0 +1,32 @@
+.ff-split-diagonal { height: calc(var(--vp-h, 100vh) * 1.8); isolation: isolate; --ff-shift: calc((var(--ff-p, 0.5) - 0.5) * var(--ff-travel) * var(--ff-dir) * 1cqw); --ff-t: tan(calc(var(--ff-skew) * 1deg)); background: var(--ff-right); color: var(--ff-fg); }
+.ff-split-diagonal__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; }
+.ff-split-diagonal__half { position: absolute; inset: 0; display: grid; align-items: end; padding-bottom: clamp(28px, 7cqw, 88px) !important; padding: clamp(20px, 5cqw, 72px); overflow: hidden; }
+/* The left panel is clipped by a polygon whose slanted edge slides with scroll. */
+.ff-split-diagonal__half--a { background: var(--ff-left); color: #f4f1ea; clip-path: polygon(0 0, calc(50% + var(--ff-shift) + var(--ff-t) * 50cqh) 0, calc(50% + var(--ff-shift) - var(--ff-t) * 50cqh) 100%, 0 100%); z-index: 1; }
+.ff-split-diagonal__half--b { background: var(--ff-right); color: var(--ff-fg); z-index: 0; padding-left: 62%; }
+.ff-split-diagonal__half--a .ff-split-diagonal__content { max-width: min(26rem, 36%); }
+.ff-split-diagonal__half--b .ff-split-diagonal__content { max-width: 26rem; position: relative; z-index: 1; }
+.ff-split-diagonal[data-reverse] .ff-split-diagonal__half--a { background: var(--ff-left); }
+.ff-split-diagonal__kicker { margin: 0 0 0.6rem; color: var(--ff-accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-split-diagonal__half--b .ff-split-diagonal__kicker { color: color-mix(in oklab, var(--ff-accent) 60%, #7a4a00); }
+.ff-split-diagonal h2, .ff-split-diagonal h3 { margin: 0 0 0.7rem; font-size: clamp(1.4rem, 3.8cqw, 2.8rem); line-height: 1.05; letter-spacing: -0.03em; }
+.ff-split-diagonal p { margin: 0; }
+.ff-split-diagonal__content p:last-child { opacity: 0.8; }
+.ff-split-diagonal__art { position: absolute; width: 22%; top: 7%; border-radius: 20px; }
+.ff-split-diagonal__half--a .ff-split-diagonal__art { left: 6%; opacity: 0.5; transform: rotate(-6deg); }
+.ff-split-diagonal__half--b .ff-split-diagonal__art { right: 6%; opacity: 0.8; transform: rotate(5deg); }
+.ff-split-diagonal__seam { position: absolute; z-index: 2; top: -10%; bottom: -10%; width: var(--ff-seam); left: calc(50% + var(--ff-shift) - var(--ff-seam) / 2); background: var(--ff-accent); transform: skewX(calc(var(--ff-skew) * -1deg)); transform-origin: center; pointer-events: none; }
+.ff-split-diagonal[data-glow] .ff-split-diagonal__seam { box-shadow: 0 0 24px 4px color-mix(in oklab, var(--ff-accent) 70%, transparent); }
+@container (max-width: 620px) {
+  .ff-split-diagonal { height: calc(var(--vp-h, 100vh) * 1.6); }
+  .ff-split-diagonal__half--a { clip-path: polygon(0 0, 100% 0, 100% calc(50% + var(--ff-shift) - var(--ff-t) * 50cqw), 0 calc(50% + var(--ff-shift) + var(--ff-t) * 50cqw)); }
+  .ff-split-diagonal__half--a, .ff-split-diagonal__half--b { padding: 24px; padding-left: 24px; }
+  .ff-split-diagonal__half--a { align-items: start; }
+  .ff-split-diagonal__half--b { align-items: end; padding-bottom: 28px; }
+  .ff-split-diagonal__half--a .ff-split-diagonal__content { max-width: none; }
+  .ff-split-diagonal__seam { left: -10%; right: -10%; top: calc(50% + var(--ff-shift) - var(--ff-seam) / 2); bottom: auto; width: auto; height: var(--ff-seam); transform: rotate(calc(var(--ff-skew) * 1deg)); }
+  .ff-split-diagonal__art { display: none; }
+}
+
+.ff-split-diagonal[data-reduced] { height: var(--vp-h, 100vh); }
+.ff-split-diagonal[data-reduced] .ff-split-diagonal__stage { position: relative; }

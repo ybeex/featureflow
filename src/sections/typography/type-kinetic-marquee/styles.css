@@ -1,0 +1,14 @@
+.ff-type-kinetic-marquee { padding: clamp(24px, 6cqw, 80px) 0; overflow: hidden; }
+.ff-type-kinetic-marquee__rows { display: grid; gap: clamp(2px, 1cqw, 14px); transform: skewY(var(--ff-skew)); transform-origin: 50% 50%; }
+.ff-type-kinetic-marquee__row { overflow: hidden; white-space: nowrap; }
+.ff-type-kinetic-marquee__track { display: inline-flex; will-change: transform; }
+.ff-type-kinetic-marquee__set { display: inline-flex; flex: none; }
+.ff-type-kinetic-marquee__word { display: inline-flex; align-items: center; gap: 0.35em; padding-right: 0.35em; font-size: clamp(2.2rem, calc(var(--ff-fs) * 0.1cqw + 1rem), calc(var(--ff-fs) * 1px)); font-weight: 800; line-height: 1.05; letter-spacing: -0.045em; text-transform: uppercase; }
+.ff-type-kinetic-marquee[data-ghost] .ff-type-kinetic-marquee__word:nth-child(even) { color: color-mix(in oklab, var(--ff-fg) 24%, transparent); }
+.ff-type-kinetic-marquee__word[data-hl] { color: var(--ff-accent) !important; }
+.ff-type-kinetic-marquee__word i { font-style: normal; font-size: 0.5em; color: var(--ff-accent); }
+/* Not animating (reduced motion or paused): rows wrap statically so every word stays readable. */
+.ff-type-kinetic-marquee[data-static] .ff-type-kinetic-marquee__row { white-space: normal; }
+.ff-type-kinetic-marquee[data-static] .ff-type-kinetic-marquee__track { display: block; transform: none !important; }
+.ff-type-kinetic-marquee[data-static] .ff-type-kinetic-marquee__set { display: flex; flex-wrap: wrap; padding: 0 clamp(14px, 4cqw, 48px); }
+.ff-type-kinetic-marquee[data-static] .ff-type-kinetic-marquee__set[aria-hidden="true"] { display: none; }

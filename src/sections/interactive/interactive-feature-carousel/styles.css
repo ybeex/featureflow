@@ -1,0 +1,27 @@
+.ff-interactive-feature-carousel { padding: clamp(20px, 4cqw, 56px) 0; overflow: hidden; }
+.ff-interactive-feature-carousel__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 clamp(16px, 4cqw, 56px); margin-bottom: clamp(12px, 3cqw, 28px); }
+.ff-interactive-feature-carousel__head h2 { margin: 0; font-size: clamp(1.4rem, 3.4cqw, 2.4rem); letter-spacing: -0.035em; }
+.ff-interactive-feature-carousel__ctrl { display: flex; gap: 8px; }
+.ff-interactive-feature-carousel__ctrl button { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--ff-fg) 25%, transparent); background: transparent; color: inherit; cursor: pointer; }
+.ff-interactive-feature-carousel__ctrl button:hover:not(:disabled) { background: var(--ff-fg); color: var(--ff-bg); }
+.ff-interactive-feature-carousel__ctrl button:disabled { opacity: 0.35; cursor: default; }
+.ff-interactive-feature-carousel__viewport { position: relative; touch-action: pan-y; cursor: grab; outline: none; }
+.ff-interactive-feature-carousel__viewport:active { cursor: grabbing; }
+.ff-interactive-feature-carousel__viewport:focus-visible { outline: 2px solid var(--ff-accent); outline-offset: -2px; }
+.ff-interactive-feature-carousel__track { list-style: none; margin: 0; padding: 0; position: relative; height: clamp(15rem, 36cqw, 26rem); }
+/* Slides are all centred in the same spot and offset by --off × (their width). Side slides scale down and fade. */
+.ff-interactive-feature-carousel__slide { position: absolute; top: 0; bottom: 0; left: calc(50% - var(--ff-w) / 2); width: var(--ff-w); display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 12px; padding: 12px; border-radius: var(--ff-radius); background: color-mix(in oklab, var(--ff-fg) 7%, var(--ff-bg)); border: 1px solid color-mix(in oklab, var(--ff-fg) 14%, transparent); transform: translate3d(calc(var(--off) * 104% + var(--ff-drag, 0px)), 0, 0) scale(calc(1 - (1 - var(--ff-side-scale)) * min(1, max(var(--off), calc(var(--off) * -1))))); opacity: calc(1 - (1 - var(--ff-side-op)) * min(1, max(var(--off), calc(var(--off) * -1))) - max(0, max(var(--off), calc(var(--off) * -1)) - 1) * 1); transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s; z-index: calc(10 - max(var(--off), calc(var(--off) * -1))); user-select: none; }
+.ff-interactive-feature-carousel[data-drag] .ff-interactive-feature-carousel__slide { transition: none; }
+.ff-interactive-feature-carousel__slide:not([data-near]) { pointer-events: none; visibility: hidden; }
+.ff-interactive-feature-carousel__art { width: 100%; height: 100%; aspect-ratio: auto !important; border-radius: calc(var(--ff-radius) - 8px); min-height: 0; }
+.ff-interactive-feature-carousel__copy p { margin: 0; color: var(--ff-accent); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.ff-interactive-feature-carousel__copy h3 { margin: 0.2rem 0 0.2rem; font-size: clamp(1rem, 2.2cqw, 1.4rem); letter-spacing: -0.02em; }
+.ff-interactive-feature-carousel__copy span { font-size: 0.86rem; opacity: 0.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ff-interactive-feature-carousel__dots { display: flex; justify-content: center; gap: 2px; margin-top: 8px; }
+.ff-interactive-feature-carousel__dots button { position: relative; width: 28px; height: 28px; border: 0; background: transparent; cursor: pointer; }
+.ff-interactive-feature-carousel__dots button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px; border-radius: 99px; background: color-mix(in oklab, var(--ff-fg) 28%, transparent); transition: width 0.3s, margin 0.3s, background 0.3s; }
+.ff-interactive-feature-carousel__dots button[aria-current="true"]::after { width: 22px; margin-left: -11px; background: var(--ff-accent); }
+.ff-interactive-feature-carousel__dots button:focus-visible { outline: 2px solid var(--ff-accent); border-radius: 8px; }
+@container (max-width: 560px) { .ff-interactive-feature-carousel__slide { width: 78%; left: 11%; } .ff-interactive-feature-carousel__ctrl button:not(:nth-last-child(-n+2)) { display: grid; } }
+@media (prefers-reduced-motion: reduce) { .ff-interactive-feature-carousel__slide, .ff-interactive-feature-carousel__dots button::after { transition: none; } }
+.ff-interactive-feature-carousel[data-still] .ff-interactive-feature-carousel__slide { transition: none; }

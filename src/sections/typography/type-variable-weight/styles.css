@@ -1,0 +1,9 @@
+.ff-type-variable-weight { padding: clamp(40px, 9cqw, 120px) clamp(16px, 5cqw, 64px); min-height: 22rem; display: grid; align-items: center; }
+.ff-type-variable-weight__inner { text-align: center; }
+/* Needs a variable font with a wght axis. "Inter Variable" is used here; any font with that axis works, and
+   a static font simply renders the nearest available weight. */
+.ff-type-variable-weight__word { margin: 0; display: inline-flex; font-family: var(--ff-vf, "Inter Variable", Inter, system-ui, sans-serif); font-size: clamp(3rem, calc(var(--ff-fs) * 0.12cqw + 1.5rem), calc(var(--ff-fs) * 1px)); line-height: 1; letter-spacing: -0.04em; touch-action: pan-y; cursor: default; }
+.ff-type-variable-weight__word [data-ch] { display: inline-block; font-variation-settings: "wght" 500; transition: font-variation-settings 0.12s linear; }
+.ff-type-variable-weight__sub { margin: 1.2rem 0 0; font-size: clamp(1rem, 2cqw, 1.3rem); font-weight: 500; }
+.ff-type-variable-weight__hint { margin: 0.4rem 0 0; font-size: 0.82rem; color: var(--ff-accent); font-weight: 600; letter-spacing: 0.04em; }
+@media (prefers-reduced-motion: reduce) { .ff-type-variable-weight__word [data-ch] { transition: none; } }

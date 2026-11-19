@@ -1,0 +1,12 @@
+.ff-reveal-counters { padding: clamp(28px, 7cqw, 96px) clamp(16px, 5cqw, 64px); }
+.ff-reveal-counters__head { max-width: 64rem; margin: 0 auto clamp(20px, 4cqw, 48px); }
+.ff-reveal-counters__head p { margin: 0; color: var(--ff-accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-reveal-counters__head h2 { margin: 0.5rem 0 0; font-size: clamp(1.7rem, 4.4cqw, 3rem); letter-spacing: -0.03em; line-height: 1.05; }
+.ff-reveal-counters__grid { list-style: none; margin: 0 auto; padding: 0; max-width: 64rem; display: grid; grid-template-columns: repeat(var(--ff-cols), minmax(0, 1fr)); gap: clamp(10px, 2cqw, 20px); }
+.ff-reveal-counters__stat { display: grid; align-content: start; gap: 4px; padding: clamp(16px, 2.6cqw, 28px); border-radius: var(--ff-radius); border: 1px solid color-mix(in oklab, var(--ff-fg) 14%, transparent); background: color-mix(in oklab, var(--ff-fg) 5%, var(--ff-bg)); }
+.ff-reveal-counters__num { font-size: clamp(1.7rem, 4.4cqw, 3.4rem); font-weight: 700; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--ff-accent); }
+.ff-reveal-counters__num small { font-size: 0.5em; margin-left: 0.1em; letter-spacing: 0; }
+.ff-reveal-counters__label { margin-top: 10px; font-weight: 600; font-size: 0.95rem; }
+.ff-reveal-counters__note { font-size: 0.82rem; opacity: 0.65; }
+@container (max-width: 760px) { .ff-reveal-counters__grid { grid-template-columns: repeat(min(var(--ff-cols), 2), minmax(0, 1fr)); } }
+@container (max-width: 380px) { .ff-reveal-counters__grid { grid-template-columns: 1fr; } }

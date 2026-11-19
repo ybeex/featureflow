@@ -1,0 +1,25 @@
+.ff-reveal-blur-sweep { padding: clamp(28px, 7cqw, 96px) clamp(16px, 5cqw, 64px); }
+.ff-reveal-blur-sweep__inner { max-width: 52rem; margin: 0 auto; }
+.ff-reveal-blur-sweep__title { margin: 0; font-size: clamp(2rem, 6.4cqw, 4.4rem); line-height: 1; letter-spacing: -0.04em; font-weight: 750; color: var(--ff-fg); }
+.ff-reveal-blur-sweep__lead { margin: clamp(14px, 3cqw, 28px) 0 clamp(24px, 5cqw, 52px); font-size: clamp(1.05rem, 2.6cqw, 1.5rem); line-height: 1.4; max-width: 34rem; opacity: 0.85; }
+.ff-reveal-blur-sweep__line { display: block; }
+.ff-reveal-blur-sweep__rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.ff-reveal-blur-sweep__row { display: flex; gap: 16px; align-items: flex-start; padding: clamp(14px, 2.4cqw, 22px); border-radius: 16px; border: 1px solid color-mix(in oklab, var(--ff-fg) 10%, transparent); background: color-mix(in oklab, var(--ff-fg) 3%, var(--ff-bg)); }
+.ff-reveal-blur-sweep__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; color: var(--ff-accent); background: color-mix(in oklab, var(--ff-accent) 14%, transparent); }
+.ff-reveal-blur-sweep__row h3 { margin: 0 0 2px; font-size: 1.05rem; letter-spacing: -0.01em; }
+.ff-reveal-blur-sweep__row p { margin: 0; opacity: 0.72; font-size: 0.92rem; }
+
+/* Armed (JS ran, motion allowed): start states. Everything is visible otherwise. */
+.ff-reveal-blur-sweep[data-armed] .ff-reveal-blur-sweep__title {
+  color: transparent; -webkit-text-fill-color: transparent;
+  background: linear-gradient(var(--ff-angle), var(--ff-fg) 0 38%, var(--ff-accent) 50%, var(--ff-fg) 62% 100%) 100% 0 / 300% 100% no-repeat;
+  -webkit-background-clip: text; background-clip: text;
+}
+.ff-reveal-blur-sweep[data-armed] .ff-reveal-blur-sweep__inner[data-visible] .ff-reveal-blur-sweep__title { animation: ff-reveal-blur-sweep-sweep calc(var(--ff-dur) * 2) var(--ff-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards; }
+@keyframes ff-reveal-blur-sweep-sweep { from { background-position: 100% 0; } to { background-position: 0% 0; } }
+.ff-reveal-blur-sweep[data-armed] .ff-reveal-blur-sweep__line { opacity: 0.001; transform: translateY(0.6em); }
+.ff-reveal-blur-sweep[data-armed] [data-visible] .ff-reveal-blur-sweep__line { opacity: 1; transform: none; transition: opacity var(--ff-dur) ease, transform var(--ff-dur) cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--ff-dur) * 0.5 + var(--n) * var(--ff-gap)); }
+/* Each row begins only after the previous row has finished its blur-to-sharp transition. */
+.ff-reveal-blur-sweep[data-armed] .ff-reveal-blur-sweep__row { opacity: 0.001; filter: blur(var(--ff-blur)); transform: translateY(14px) scale(0.98); }
+.ff-reveal-blur-sweep[data-armed] [data-visible] .ff-reveal-blur-sweep__row { opacity: 1; filter: blur(0); transform: none; transition: opacity var(--ff-dur) ease, filter var(--ff-dur) ease, transform var(--ff-dur) cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--ff-dur) * 1.2 + var(--r) * (var(--ff-dur) + var(--ff-gap))); }
+@container (max-width: 480px) { .ff-reveal-blur-sweep__icon { width: 38px; height: 38px; } }

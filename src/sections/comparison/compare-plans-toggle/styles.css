@@ -1,0 +1,30 @@
+.ff-compare-plans-toggle { padding: clamp(22px, 5cqw, 64px) clamp(16px, 4cqw, 56px); }
+.ff-compare-plans-toggle__head { text-align: center; margin-bottom: clamp(16px, 3cqw, 32px); }
+.ff-compare-plans-toggle__head h2 { margin: 0 0 14px; font-size: clamp(1.6rem, 4cqw, 2.8rem); line-height: 1.05; letter-spacing: -0.035em; }
+.ff-compare-plans-toggle__switch { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; font-weight: 600; font-size: 0.92rem; }
+.ff-compare-plans-toggle__switch > span { opacity: 0.55; transition: opacity 0.2s; }
+.ff-compare-plans-toggle__switch > span.is-on { opacity: 1; }
+.ff-compare-plans-toggle__switch button { all: unset; box-sizing: border-box; position: relative; width: 52px; height: 30px; border-radius: 99px; background: color-mix(in oklab, var(--ff-fg) 22%, transparent); cursor: pointer; transition: background 0.25s; }
+.ff-compare-plans-toggle__switch button[aria-checked="true"] { background: var(--ff-accent); }
+.ff-compare-plans-toggle__switch button:focus-visible { outline: 2px solid var(--ff-accent); outline-offset: 3px; }
+.ff-compare-plans-toggle__switch button i { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgb(0 0 0 / 0.3); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.ff-compare-plans-toggle__switch button[aria-checked="true"] i { transform: translateX(22px); }
+.ff-compare-plans-toggle__save { flex-basis: 100%; font-size: 0.8rem; font-weight: 600; color: var(--ff-accent); }
+.ff-compare-plans-toggle__grid { list-style: none; margin: 0 auto; padding: 0; max-width: 66rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2cqw, 22px); align-items: stretch; }
+.ff-compare-plans-toggle__plan { position: relative; display: flex; flex-direction: column; padding: clamp(18px, 2.6cqw, 30px); border-radius: var(--ff-radius); background: #fff; border: 1px solid rgb(0 0 0 / 0.08); }
+.ff-compare-plans-toggle__plan[data-featured] { background: var(--ff-fg); color: #f5f3ff; border-color: transparent; box-shadow: 0 28px 50px -26px color-mix(in oklab, var(--ff-accent) 80%, #000); }
+.ff-compare-plans-toggle__badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); padding: 3px 12px; border-radius: 99px; background: var(--ff-accent); color: #fff; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+.ff-compare-plans-toggle__plan h3 { margin: 0; font-size: 1.15rem; }
+.ff-compare-plans-toggle__blurb { margin: 0.2rem 0 0; font-size: 0.86rem; opacity: 0.7; }
+.ff-compare-plans-toggle__price { margin: 1rem 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+.ff-compare-plans-toggle__amount { font-size: clamp(2rem, 4.4cqw, 3rem); font-weight: 700; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+.ff-compare-plans-toggle__price small { font-size: 0.78rem; opacity: 0.65; }
+.ff-compare-plans-toggle__plan ul { list-style: none; margin: 0 0 1.4rem; padding: 0; display: grid; gap: 8px; font-size: 0.9rem; }
+.ff-compare-plans-toggle__plan li { display: flex; gap: 8px; align-items: center; }
+.ff-compare-plans-toggle__plan li svg { color: var(--ff-accent); flex: none; }
+.ff-compare-plans-toggle__cta { margin-top: auto; min-height: 44px; border-radius: 12px; border: 1.5px solid var(--ff-accent); background: transparent; color: inherit; font-weight: 650; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.ff-compare-plans-toggle__cta:hover { background: var(--ff-accent); color: #fff; }
+.ff-compare-plans-toggle__plan[data-featured] .ff-compare-plans-toggle__cta { background: var(--ff-accent); color: #fff; }
+.ff-compare-plans-toggle__cta:focus-visible { outline: 2px solid var(--ff-accent); outline-offset: 3px; }
+@container (max-width: 760px) { .ff-compare-plans-toggle__grid { grid-template-columns: minmax(0, 1fr); max-width: 26rem; } .ff-compare-plans-toggle__plan[data-featured] { order: -1; } }
+@media (prefers-reduced-motion: reduce) { .ff-compare-plans-toggle__switch button, .ff-compare-plans-toggle__switch button i { transition: none; } }

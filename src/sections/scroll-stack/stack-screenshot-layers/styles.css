@@ -1,0 +1,20 @@
+.ff-stack-screenshot-layers__track { height: calc(var(--vp-h, 100vh) * var(--ff-len)); }
+.ff-stack-screenshot-layers__stage { position: sticky; top: 0; height: var(--vp-h, 100vh); overflow: hidden; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); align-items: center; gap: clamp(16px, 4cqw, 56px); padding: 0 clamp(20px, 5cqw, 64px); isolation: isolate; }
+.ff-stack-screenshot-layers__bg { position: absolute; right: -12%; top: 10%; width: 62%; opacity: 0.55; border-radius: 50%; overflow: hidden; z-index: -1; filter: saturate(0.9); will-change: transform; }
+.ff-stack-screenshot-layers__bg--b { right: auto; left: -22%; top: 62%; width: 38%; opacity: 0.18; }
+.ff-stack-screenshot-layers__eyebrow { margin: 0; color: var(--ff-accent); font-size: 0.8rem; font-weight: 650; letter-spacing: 0.12em; font-variant-numeric: tabular-nums; }
+.ff-stack-screenshot-layers__caption h2 { margin: 0.5rem 0 0.6rem; font-size: clamp(1.5rem, 3.8cqw, 2.8rem); line-height: 1.05; letter-spacing: -0.03em; }
+.ff-stack-screenshot-layers__text { margin: 0; max-width: 24rem; opacity: 0.75; }
+.ff-stack-screenshot-layers__shots { position: relative; height: 62%; }
+.ff-stack-screenshot-layers__shot { position: absolute; left: 0; right: 0; will-change: transform; transform-origin: 50% 100%; }
+.ff-stack-screenshot-layers__dim { position: absolute; inset: 0; border-radius: 12px; pointer-events: none; }
+@container (max-width: 700px) {
+  .ff-stack-screenshot-layers__stage { grid-template-columns: 1fr; grid-template-rows: auto 1fr; align-content: start; padding-top: 24px; }
+  .ff-stack-screenshot-layers__shots { height: auto; min-height: 0; align-self: stretch; }
+  .ff-stack-screenshot-layers__caption h2 { font-size: 1.4rem; }
+  .ff-stack-screenshot-layers__text { font-size: 0.9rem; }
+}
+.ff-stack-screenshot-layers[data-reduced] .ff-stack-screenshot-layers__track { height: auto; }
+.ff-stack-screenshot-layers[data-reduced] .ff-stack-screenshot-layers__stage { position: static; height: auto; overflow: visible; grid-template-columns: 1fr; padding: 32px 20px; }
+.ff-stack-screenshot-layers[data-reduced] .ff-stack-screenshot-layers__shots { height: auto; display: grid; gap: 20px; }
+.ff-stack-screenshot-layers[data-reduced] .ff-stack-screenshot-layers__shot { position: static; }

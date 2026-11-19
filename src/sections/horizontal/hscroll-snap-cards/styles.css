@@ -1,0 +1,26 @@
+.ff-hscroll-snap-cards { padding: clamp(24px, 5cqw, 64px) 0; overflow-x: clip; }
+.ff-hscroll-snap-cards__head { display: flex; align-items: end; justify-content: space-between; gap: 16px; padding: 0 var(--ff-inset) clamp(14px, 3cqw, 28px); }
+.ff-hscroll-snap-cards__head p { margin: 0; color: var(--ff-accent); font-size: 0.78rem; font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-hscroll-snap-cards__head h2 { margin: 0.4rem 0 0; font-size: clamp(1.5rem, 4cqw, 2.6rem); line-height: 1.05; letter-spacing: -0.03em; }
+.ff-hscroll-snap-cards__btns { display: flex; gap: 8px; flex: none; }
+.ff-hscroll-snap-cards__btns button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--ff-fg) 22%, transparent); background: var(--ff-bg); color: var(--ff-fg); cursor: pointer; }
+.ff-hscroll-snap-cards__btns button:hover:not(:disabled) { background: var(--ff-fg); color: var(--ff-bg); }
+.ff-hscroll-snap-cards__btns button:disabled { opacity: 0.35; cursor: default; }
+.ff-hscroll-snap-cards__wrap { position: relative; }
+.ff-hscroll-snap-cards__wrap::before, .ff-hscroll-snap-cards__wrap::after { content: ""; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 2; pointer-events: none; transition: opacity 0.2s; }
+.ff-hscroll-snap-cards__wrap::before { left: 0; background: linear-gradient(90deg, var(--ff-bg), transparent); }
+.ff-hscroll-snap-cards__wrap::after { right: 0; background: linear-gradient(270deg, var(--ff-bg), transparent); }
+.ff-hscroll-snap-cards__wrap[data-start]::before, .ff-hscroll-snap-cards__wrap[data-end]::after { opacity: 0; }
+.ff-hscroll-snap-cards__scroller { display: flex; gap: var(--ff-gap); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--ff-inset); padding: 6px var(--ff-inset) 18px; scrollbar-width: none; overscroll-behavior-x: contain; }
+.ff-hscroll-snap-cards__scroller::-webkit-scrollbar { display: none; }
+.ff-hscroll-snap-cards__card { flex: none; width: min(var(--ff-w), 82cqw); scroll-snap-align: var(--ff-align); padding: 12px 12px 18px; border-radius: var(--ff-radius); background: #fff; color: #14161c; border: 1px solid rgb(0 0 0 / 0.08); box-shadow: 0 10px 28px -18px rgb(20 22 40 / 0.4); }
+.ff-hscroll-snap-cards__art { border-radius: calc(var(--ff-radius) - 6px); width: 100%; }
+.ff-hscroll-snap-cards__card h3 { margin: 14px 6px 4px; font-size: 1.05rem; line-height: 1.2; letter-spacing: -0.015em; }
+.ff-hscroll-snap-cards__card p { margin: 0 6px; font-size: 0.88rem; opacity: 0.72; }
+.ff-hscroll-snap-cards__dots { display: flex; justify-content: center; gap: 4px; margin-top: 4px; }
+.ff-hscroll-snap-cards__dots button { position: relative; width: 28px; height: 28px; border: 0; background: transparent; cursor: pointer; }
+.ff-hscroll-snap-cards__dots button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; margin: -4.5px; border-radius: 99px; background: color-mix(in oklab, var(--ff-fg) 25%, transparent); transition: width 0.25s, background 0.25s; }
+.ff-hscroll-snap-cards__dots button[aria-current="true"]::after { width: 22px; margin-left: -11px; background: var(--ff-accent); }
+@container (max-width: 520px) { .ff-hscroll-snap-cards__head { align-items: start; } .ff-hscroll-snap-cards__btns button { width: 40px; height: 40px; } }
+@media (hover: none) { .ff-hscroll-snap-cards__btns { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ff-hscroll-snap-cards__scroller { scroll-behavior: auto; } .ff-hscroll-snap-cards__dots button::after, .ff-hscroll-snap-cards__wrap::before, .ff-hscroll-snap-cards__wrap::after { transition: none; } }

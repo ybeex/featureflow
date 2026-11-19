@@ -1,0 +1,69 @@
+.ff-reveal-words-progress { min-height: 24rem; }
+.ff-reveal-words-progress__stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(14px, 3cqw, 28px);
+  min-height: min(var(--vp-h, 100vh), 40rem);
+  padding: clamp(28px, 8cqw, 96px) clamp(20px, 7cqw, 112px);
+}
+.ff-reveal-words-progress__eyebrow {
+  margin: 0;
+  color: var(--ff-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.ff-reveal-words-progress__text {
+  margin: 0;
+  max-width: 22em;
+  font-size: calc(clamp(1.55rem, 5.6cqw, 4rem) * var(--ff-scale));
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+.ff-reveal-words-progress__word {
+  display: inline-block;
+  /* Progress of this word: 0 before its slice, 1 after it. Reads the single --ff-p written by useScrollVar. */
+  --w: clamp(0, calc((var(--ff-p, 1) - var(--ff-s) - var(--i) * var(--ff-step)) / var(--ff-win)), 1);
+}
+.ff-reveal-words-progress__meter {
+  width: min(12rem, 40%);
+  height: 3px;
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--ff-fg) 16%, transparent);
+  overflow: hidden;
+}
+.ff-reveal-words-progress__meter-fill {
+  display: block;
+  height: 100%;
+  background: var(--ff-accent);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--ff-p, 1));
+}
+
+/* Armed: pin the stage for a few screens and tie each word to scroll. */
+.ff-reveal-words-progress[data-armed] { height: calc(var(--vp-h, 100vh) * var(--ff-screens)); }
+.ff-reveal-words-progress[data-armed] .ff-reveal-words-progress__stage {
+  position: sticky;
+  top: 0;
+  height: var(--vp-h, 100vh);
+  min-height: 0;
+}
+.ff-reveal-words-progress[data-armed] .ff-reveal-words-progress__word {
+  opacity: calc(var(--ff-dim) + (1 - var(--ff-dim)) * var(--w));
+  transform: translate3d(0, calc((1 - var(--w)) * var(--ff-y)), 0);
+  will-change: opacity, transform;
+}
+.ff-reveal-words-progress[data-armed] .ff-reveal-words-progress__word--accent {
+  color: color-mix(in oklab, var(--ff-fg), var(--ff-accent) calc(var(--w) * 100%));
+}
+.ff-reveal-words-progress:not([data-armed]) .ff-reveal-words-progress__word--accent { color: var(--ff-accent); }
+
+/* Narrow containers: a shorter pinned run so the stage does not hold the screen for long. */
+@container (max-width: 520px) {
+  .ff-reveal-words-progress[data-armed] { height: calc(var(--vp-h, 100vh) * min(var(--ff-screens), 2.4)); }
+  .ff-reveal-words-progress__text { line-height: 1.2; }
+}

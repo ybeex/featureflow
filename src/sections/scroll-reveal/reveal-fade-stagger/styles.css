@@ -1,0 +1,45 @@
+.ff-reveal-fade-stagger { padding: clamp(28px, 7cqw, 96px) clamp(18px, 5cqw, 64px); }
+.ff-reveal-fade-stagger__inner { max-width: 68rem; margin: 0 auto; }
+.ff-reveal-fade-stagger__head { max-width: 40rem; margin-bottom: clamp(24px, 5cqw, 56px); }
+.ff-reveal-fade-stagger__eyebrow { margin: 0; color: var(--ff-accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-reveal-fade-stagger__head h2 { margin: 0.5rem 0 0.7rem; font-size: clamp(1.7rem, 4.4cqw, 3rem); line-height: 1.06; letter-spacing: -0.03em; }
+.ff-reveal-fade-stagger__head p:last-child { margin: 0; opacity: 0.7; }
+.ff-reveal-fade-stagger__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--ff-cols), minmax(0, 1fr));
+  gap: clamp(12px, 2cqw, 24px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ff-reveal-fade-stagger__card {
+  padding: clamp(18px, 2.6cqw, 28px);
+  border-radius: var(--ff-radius);
+  border: 1px solid color-mix(in oklab, var(--ff-fg) 11%, transparent);
+  background: color-mix(in oklab, var(--ff-fg) 2.5%, var(--ff-bg));
+}
+.ff-reveal-fade-stagger__index { font-size: 0.8rem; font-weight: 600; color: var(--ff-accent); font-variant-numeric: tabular-nums; }
+.ff-reveal-fade-stagger__card h3 { margin: 0.7rem 0 0.4rem; font-size: 1.12rem; line-height: 1.2; letter-spacing: -0.015em; }
+.ff-reveal-fade-stagger__card p { margin: 0; font-size: 0.92rem; opacity: 0.72; }
+
+/* Hidden start state exists only once the component has armed itself (JS ran, motion allowed). */
+.ff-reveal-fade-stagger[data-armed] .ff-reveal-fade-stagger__reveal {
+  opacity: 0;
+  transform: translate3d(var(--ff-dx), var(--ff-dy), 0);
+}
+.ff-reveal-fade-stagger[data-armed] .ff-reveal-fade-stagger__head[data-visible],
+.ff-reveal-fade-stagger[data-armed] .ff-reveal-fade-stagger__grid[data-visible] .ff-reveal-fade-stagger__card {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--ff-dur) var(--ff-ease), transform var(--ff-dur) var(--ff-ease);
+}
+.ff-reveal-fade-stagger[data-armed] .ff-reveal-fade-stagger__grid[data-visible] .ff-reveal-fade-stagger__card {
+  transition-delay: calc(var(--ff-lead) + var(--i) * var(--ff-stagger));
+}
+
+@container (max-width: 760px) {
+  .ff-reveal-fade-stagger__grid { grid-template-columns: repeat(min(var(--ff-cols), 2), minmax(0, 1fr)); }
+}
+@container (max-width: 480px) {
+  .ff-reveal-fade-stagger__grid { grid-template-columns: 1fr; }
+}

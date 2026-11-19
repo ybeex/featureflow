@@ -1,0 +1,22 @@
+.ff-type-emphasis-scroll { padding: clamp(60px, 14cqw, 180px) clamp(18px, 6cqw, 80px); }
+.ff-type-emphasis-scroll__inner { max-width: 52rem; margin: 0 auto; }
+.ff-type-emphasis-scroll__kicker { margin: 0 0 1.4rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.55; }
+.ff-type-emphasis-scroll__text { margin: 0; font-size: clamp(1.4rem, calc(var(--ff-fs) * 0.09cqw + 0.8rem), calc(var(--ff-fs) * 1px)); font-weight: 600; line-height: 1.22; letter-spacing: -0.03em; }
+.ff-type-emphasis-scroll__text > span { transition: opacity 0.5s; }
+.ff-type-emphasis-scroll__text mark { position: relative; background: none; color: inherit; transition: color 0.4s, opacity 0.5s; padding: 0 0.08em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+/* The highlight is a background gradient whose size animates from 0 to full width, so wrapped lines each paint correctly. */
+.ff-type-emphasis-scroll mark { background-repeat: no-repeat; background-position: 0 100%; background-size: 0% var(--ff-th); transition: background-size 0.7s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s, opacity 0.5s; }
+.ff-type-emphasis-scroll[data-mark="marker"] mark { background-image: linear-gradient(var(--ff-accent), var(--ff-accent)); }
+.ff-type-emphasis-scroll[data-mark="underline"] mark { background-image: linear-gradient(var(--ff-accent), var(--ff-accent)); background-size: 0% 0.12em; background-position: 0 96%; }
+.ff-type-emphasis-scroll[data-mark="color"] mark { background-image: none; }
+.ff-type-emphasis-scroll[data-mark="marker"] mark[data-on] { background-size: 100% var(--ff-th); }
+.ff-type-emphasis-scroll[data-mark="underline"] mark[data-on] { background-size: 100% 0.12em; }
+.ff-type-emphasis-scroll[data-mark="color"] mark[data-on] { color: color-mix(in oklab, var(--ff-accent) 60%, #b45309); }
+/* With JS and motion available, non-focused text can recede so the highlighted phrase leads the eye. */
+.ff-type-emphasis-scroll[data-dim][data-any] .ff-type-emphasis-scroll__text > span { opacity: 0.38; }
+.ff-type-emphasis-scroll[data-dim][data-any] mark:not([data-on]) { opacity: 0.38; }
+/* Without scroll motion (reduced motion), every phrase is simply emphasised. */
+.ff-type-emphasis-scroll:not([data-armed])[data-mark="marker"] mark { background-size: 100% var(--ff-th); }
+.ff-type-emphasis-scroll:not([data-armed])[data-mark="underline"] mark { background-size: 100% 0.12em; }
+.ff-type-emphasis-scroll:not([data-armed])[data-mark="color"] mark { color: color-mix(in oklab, var(--ff-accent) 60%, #b45309); }
+@media (prefers-reduced-motion: reduce) { .ff-type-emphasis-scroll mark, .ff-type-emphasis-scroll__text > span { transition: none; } }

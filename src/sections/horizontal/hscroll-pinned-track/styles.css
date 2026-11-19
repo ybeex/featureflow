@@ -1,0 +1,149 @@
+/* Tall wrapper: the scroller's height times the scroll length. The stage pins inside it. */
+.ff-hscroll-pinned-track__pin {
+  --ff-p: 0;
+  height: calc(var(--vp-h, 100vh) * var(--ff-len));
+}
+.ff-hscroll-pinned-track__stage {
+  position: sticky;
+  top: 0;
+  height: var(--vp-h, 100vh);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2cqw, 24px);
+  padding: clamp(16px, 3cqw, 36px) 0 clamp(16px, 2.6cqw, 32px);
+  overflow: hidden;
+}
+.ff-hscroll-pinned-track__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 var(--ff-inset);
+}
+.ff-hscroll-pinned-track__eyebrow {
+  margin: 0 0 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ff-accent);
+}
+.ff-hscroll-pinned-track__head h2 {
+  margin: 0;
+  max-width: 22ch;
+  font-size: clamp(1.4rem, 3.2cqw, 2.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+.ff-hscroll-pinned-track__counter {
+  margin: 0;
+  flex: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding: 0.4rem 0.9rem;
+  border-radius: 99px;
+  border: 1px solid color-mix(in oklab, var(--ff-fg) 22%, transparent);
+}
+.ff-hscroll-pinned-track__viewport { flex: 1; min-height: 0; overflow: hidden; }
+.ff-hscroll-pinned-track__track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--ff-gap);
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--ff-inset);
+  list-style: none;
+  width: max-content;
+  transform: translate3d(calc(var(--ff-p) * var(--ff-dist) * -1cqw), 0, 0);
+  will-change: transform;
+}
+.ff-hscroll-pinned-track__panel {
+  flex: none;
+  width: var(--ff-pw);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(14px, 2.6cqw, 36px);
+  align-items: center;
+  padding: clamp(16px, 2.8cqw, 36px);
+  border-radius: 24px;
+  border: 1px solid color-mix(in oklab, var(--ff-fg) 12%, transparent);
+  background: color-mix(in oklab, var(--ff-accent) 6%, var(--ff-bg));
+  opacity: 0.55;
+  transition: opacity 0.35s, background-color 0.35s;
+  overflow: hidden;
+}
+.ff-hscroll-pinned-track__panel[data-active] {
+  opacity: 1;
+  background: color-mix(in oklab, var(--ff-accent) 11%, var(--ff-bg));
+}
+.ff-hscroll-pinned-track__num {
+  display: block;
+  font-size: clamp(2.2rem, 6cqw, 4.4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--ff-accent);
+}
+.ff-hscroll-pinned-track__kicker {
+  margin: 0.7rem 0 0.2rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.ff-hscroll-pinned-track__panel h3 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.1rem, 2.3cqw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.ff-hscroll-pinned-track__body { margin: 0; font-size: clamp(0.85rem, 1.3cqw, 0.98rem); opacity: 0.8; }
+.ff-hscroll-pinned-track__stat {
+  display: inline-block;
+  margin: 0.9rem 0 0;
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: color-mix(in oklab, var(--ff-accent) 16%, transparent);
+}
+.ff-hscroll-pinned-track__art { width: 100%; max-height: 100%; border-radius: 16px; }
+.ff-hscroll-pinned-track__progress {
+  height: 4px;
+  margin: 0 var(--ff-inset);
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--ff-fg) 14%, transparent);
+  overflow: hidden;
+}
+.ff-hscroll-pinned-track__fill {
+  display: block;
+  height: 100%;
+  background: var(--ff-accent);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--ff-p));
+}
+
+/* Narrow containers: a plain vertical stack, no pin, no sideways motion. */
+@container (max-width: 700px) {
+  .ff-hscroll-pinned-track__pin { height: auto; }
+  .ff-hscroll-pinned-track__stage { position: static; height: auto; overflow: visible; padding: 28px 16px; }
+  .ff-hscroll-pinned-track__head { padding: 0; }
+  .ff-hscroll-pinned-track__counter, .ff-hscroll-pinned-track__progress { display: none; }
+  .ff-hscroll-pinned-track__viewport { overflow: visible; }
+  .ff-hscroll-pinned-track__track { flex-direction: column; width: auto; height: auto; padding: 0; gap: 16px; transform: none; will-change: auto; }
+  .ff-hscroll-pinned-track__panel { width: auto; grid-template-columns: 1fr; opacity: 1; background: color-mix(in oklab, var(--ff-accent) 8%, var(--ff-bg)); }
+  .ff-hscroll-pinned-track__art { aspect-ratio: 16 / 8 !important; }
+}
+
+/* Reduced motion: same plain stack at every width. */
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__pin { height: auto; }
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__stage { position: static; height: auto; overflow: visible; padding: clamp(24px, 5cqw, 56px) clamp(16px, 5cqw, 56px); }
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__head { padding: 0; }
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__counter,
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__progress { display: none; }
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__viewport { overflow: visible; }
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__track { flex-direction: column; width: auto; height: auto; padding: 0; gap: 16px; transform: none; will-change: auto; }
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__panel { width: auto; max-width: 56rem; opacity: 1; transition: none; }
+.ff-hscroll-pinned-track[data-reduced] .ff-hscroll-pinned-track__art { max-height: 280px; }

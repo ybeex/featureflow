@@ -1,0 +1,35 @@
+.ff-sticky-nav-steps__body { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: clamp(16px, 4cqw, 56px); max-width: 62rem; margin: 0 auto; padding: clamp(20px, 4cqw, 48px) clamp(16px, 4cqw, 40px) calc(var(--vp-h, 100vh) * 0.4); }
+.ff-sticky-nav-steps[data-side="right"] .ff-sticky-nav-steps__nav { order: 2; }
+.ff-sticky-nav-steps[data-side="right"] .ff-sticky-nav-steps__body { grid-template-columns: minmax(0, 1fr) 11rem; }
+.ff-sticky-nav-steps__nav { position: sticky; top: var(--ff-top); align-self: start; display: grid; grid-template-columns: 1fr 3px; gap: 12px; }
+.ff-sticky-nav-steps__nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.ff-sticky-nav-steps__nav a { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 4px 10px 4px 4px; border-radius: 99px; text-decoration: none; font-size: 0.92rem; font-weight: 500; opacity: 0.7; }
+.ff-sticky-nav-steps__nav a:hover { opacity: 1; background: color-mix(in oklab, var(--ff-fg) 6%, transparent); }
+.ff-sticky-nav-steps__nav a[aria-current="step"] { opacity: 1; font-weight: 700; background: color-mix(in oklab, var(--ff-accent) 12%, transparent); }
+.ff-sticky-nav-steps__dot { display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 50%; font-size: 0.74rem; font-weight: 700; border: 2px solid color-mix(in oklab, var(--ff-fg) 30%, transparent); }
+.ff-sticky-nav-steps__nav a[aria-current="step"] .ff-sticky-nav-steps__dot { background: var(--ff-accent); border-color: var(--ff-accent); color: #fff; }
+.ff-sticky-nav-steps__nav a[data-done] .ff-sticky-nav-steps__dot { border-color: var(--ff-accent); color: var(--ff-accent); }
+.ff-sticky-nav-steps__progress { grid-column: 2; grid-row: 1; border-radius: 3px; background: color-mix(in oklab, var(--ff-fg) 12%, transparent); overflow: hidden; }
+.ff-sticky-nav-steps__progress i { display: block; width: 100%; height: 100%; background: var(--ff-accent); transform-origin: 50% 0; transform: scaleY(var(--ff-p, 0)); }
+.ff-sticky-nav-steps[data-progress="bar"] .ff-sticky-nav-steps__nav { grid-template-columns: 1fr; }
+.ff-sticky-nav-steps[data-progress="bar"] .ff-sticky-nav-steps__progress { grid-column: 1; grid-row: 2; height: 6px; }
+.ff-sticky-nav-steps[data-progress="bar"] .ff-sticky-nav-steps__progress i { transform-origin: 0 50%; transform: scaleX(var(--ff-p, 0)); }
+.ff-sticky-nav-steps[data-progress="none"] .ff-sticky-nav-steps__nav { grid-template-columns: 1fr; }
+.ff-sticky-nav-steps__title { margin: 0 0 clamp(18px, 3cqw, 36px); font-size: clamp(1.6rem, 4cqw, 2.8rem); line-height: 1.05; letter-spacing: -0.03em; }
+.ff-sticky-nav-steps__step { min-height: calc(var(--vp-h, 100vh) * 0.62); padding-bottom: clamp(20px, 4cqw, 48px); outline: none; }
+.ff-sticky-nav-steps__art { border-radius: 14px; width: 100%; margin-bottom: 14px; }
+.ff-sticky-nav-steps__k { margin: 0; color: var(--ff-accent); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.ff-sticky-nav-steps__step h3 { margin: 4px 0 6px; font-size: clamp(1.2rem, 2.8cqw, 1.8rem); letter-spacing: -0.02em; }
+.ff-sticky-nav-steps__step p:last-child { margin: 0; opacity: 0.78; max-width: 32rem; }
+/* Narrow: the nav becomes a compact sticky bar of numbered chips across the top. */
+@container (max-width: 640px) {
+  .ff-sticky-nav-steps__body, .ff-sticky-nav-steps[data-side="right"] .ff-sticky-nav-steps__body { grid-template-columns: 1fr; gap: 12px; padding-top: 0; }
+  .ff-sticky-nav-steps[data-side="right"] .ff-sticky-nav-steps__nav { order: 0; }
+  .ff-sticky-nav-steps__nav, .ff-sticky-nav-steps[data-progress] .ff-sticky-nav-steps__nav { top: 0; z-index: 4; grid-template-columns: 1fr; padding: 8px 0 6px; background: var(--ff-bg); }
+  .ff-sticky-nav-steps__nav ol { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; }
+  .ff-sticky-nav-steps__nav a span:not(.ff-sticky-nav-steps__dot):not(.ff-visually-hidden) { display: none; }
+  .ff-sticky-nav-steps__nav a[aria-current="step"] span:not(.ff-sticky-nav-steps__dot):not(.ff-visually-hidden) { display: inline; }
+  .ff-sticky-nav-steps__progress, .ff-sticky-nav-steps[data-progress] .ff-sticky-nav-steps__progress { grid-column: 1; grid-row: 2; height: 4px; }
+  .ff-sticky-nav-steps__progress i { transform-origin: 0 50%; transform: scaleX(var(--ff-p, 0)); }
+  .ff-sticky-nav-steps__step { min-height: calc(var(--vp-h, 100vh) * 0.5); }
+}

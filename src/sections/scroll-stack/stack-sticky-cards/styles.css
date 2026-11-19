@@ -1,0 +1,103 @@
+.ff-stack-sticky-cards {
+  --ff-pad: clamp(20px, 5cqw, 64px);
+  padding: var(--ff-pad) var(--ff-pad) calc(var(--vp-h, 100vh) * 0.3);
+}
+.ff-stack-sticky-cards__intro {
+  max-width: 44rem;
+  margin: 0 auto clamp(24px, 5cqw, 56px);
+  text-align: center;
+}
+.ff-stack-sticky-cards__intro h2 {
+  margin: 0.4rem 0 0.6rem;
+  font-size: clamp(1.7rem, 4.6cqw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.ff-stack-sticky-cards__intro p { margin: 0; opacity: 0.7; }
+.ff-stack-sticky-cards__intro .ff-stack-sticky-cards__eyebrow {
+  opacity: 1;
+  color: var(--ff-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.ff-stack-sticky-cards__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ff-gap);
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 62rem;
+}
+/* Each slot sticks a little lower than the one before, so earlier cards peek out above later ones. */
+.ff-stack-sticky-cards__slot {
+  position: sticky;
+  top: calc(var(--ff-top) + var(--i) * var(--ff-offset));
+}
+.ff-stack-sticky-cards__card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: clamp(16px, 4cqw, 48px);
+  height: clamp(300px, calc(var(--vp-h, 100vh) * 0.6), 460px);
+  padding: clamp(18px, 3.4cqw, 40px);
+  border-radius: var(--ff-radius);
+  border: 1px solid color-mix(in oklab, var(--ff-fg) 10%, transparent);
+  background: color-mix(in oklab, var(--ff-accent) calc(5% + var(--i) * 3%), var(--ff-bg));
+  box-shadow: 0 calc(30px * var(--ff-shadow)) calc(60px * var(--ff-shadow)) calc(-24px * var(--ff-shadow)) rgb(20 16 10 / calc(0.55 * var(--ff-shadow)));
+  transform-origin: 50% 0;
+  will-change: transform;
+  overflow: hidden;
+}
+.ff-stack-sticky-cards__number {
+  display: block;
+  font-size: clamp(2.4rem, 7cqw, 4.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--ff-accent);
+}
+.ff-stack-sticky-cards__kicker {
+  margin: 0.8rem 0 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.ff-stack-sticky-cards__title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.15rem, 2.6cqw, 1.7rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.ff-stack-sticky-cards__body { margin: 0; opacity: 0.75; font-size: clamp(0.88rem, 1.5cqw, 1rem); }
+.ff-stack-sticky-cards__stat {
+  display: inline-block;
+  margin: 1rem 0 0;
+  padding: 0.3rem 0.7rem;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: color-mix(in oklab, var(--ff-accent) 16%, transparent);
+}
+.ff-stack-sticky-cards__art { border-radius: calc(var(--ff-radius) * 0.6); width: 100%; }
+
+/* Narrow containers: shorter cards, smaller peeks and the illustration drops below the copy. */
+@container (max-width: 640px) {
+  .ff-stack-sticky-cards__slot { top: calc(12px + var(--i) * min(var(--ff-offset), 12px)); }
+  .ff-stack-sticky-cards__card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    min-height: 0;
+  }
+  .ff-stack-sticky-cards__art { aspect-ratio: 16 / 7 !important; }
+  .ff-stack-sticky-cards__number { font-size: 2rem; }
+}
+
+/* Reduced motion: a plain vertical list. No pinning, no scaling. */
+.ff-stack-sticky-cards[data-reduced] .ff-stack-sticky-cards__slot { position: static; }
+.ff-stack-sticky-cards[data-reduced] .ff-stack-sticky-cards__card { will-change: auto; }

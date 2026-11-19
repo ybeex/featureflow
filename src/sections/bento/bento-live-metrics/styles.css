@@ -1,0 +1,18 @@
+.ff-bento-live-metrics { padding: clamp(22px, 4cqw, 56px) clamp(16px, 4cqw, 56px); }
+.ff-bento-live-metrics__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; max-width: 70rem; margin: 0 auto clamp(14px, 3cqw, 28px); }
+.ff-bento-live-metrics__head h2 { margin: 0; font-size: clamp(1.4rem, 3.4cqw, 2.4rem); letter-spacing: -0.03em; }
+.ff-bento-live-metrics__status { display: inline-flex; align-items: center; gap: 8px; margin: 0; font-size: 0.82rem; font-weight: 600; opacity: 0.85; }
+.ff-bento-live-metrics__status i { width: 9px; height: 9px; border-radius: 50%; background: color-mix(in oklab, var(--ff-fg) 40%, transparent); }
+.ff-bento-live-metrics__status i[data-live] { background: #34d399; box-shadow: 0 0 0 0 rgb(52 211 153 / 0.6); animation: ff-bento-live-metrics-pulse 1.8s infinite; }
+@keyframes ff-bento-live-metrics-pulse { 70% { box-shadow: 0 0 0 8px rgb(52 211 153 / 0); } 100% { box-shadow: 0 0 0 0 rgb(52 211 153 / 0); } }
+.ff-bento-live-metrics__grid { list-style: none; margin: 0 auto; padding: 0; max-width: 70rem; display: grid; gap: var(--ff-gap); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ff-bento-live-metrics__tile { position: relative; overflow: hidden; padding: clamp(14px, 2cqw, 22px); min-height: 9.5rem; border-radius: var(--ff-radius); background: color-mix(in oklab, var(--ff-fg) 5%, var(--ff-bg)); border: 1px solid color-mix(in oklab, var(--ff-fg) 12%, transparent); }
+.ff-bento-live-metrics__tile[data-wide] { grid-column: span 2; }
+.ff-bento-live-metrics__label { margin: 0; font-size: 0.78rem; opacity: 0.65; letter-spacing: 0.02em; }
+.ff-bento-live-metrics__value { margin: 0.3rem 0 0; font-size: clamp(1.5rem, 3.6cqw, 2.6rem); font-weight: 650; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1; }
+.ff-bento-live-metrics__delta { display: inline-flex; align-items: center; gap: 2px; margin: 0.5rem 0 0; font-size: 0.78rem; font-weight: 600; color: #34d399; }
+.ff-bento-live-metrics__delta[data-bad] { color: #fb7185; }
+.ff-bento-live-metrics__spark { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 30%; }
+@container (max-width: 700px) { .ff-bento-live-metrics__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (max-width: 400px) { .ff-bento-live-metrics__grid { grid-template-columns: minmax(0, 1fr); } .ff-bento-live-metrics__tile[data-wide] { grid-column: auto; } }
+@media (prefers-reduced-motion: reduce) { .ff-bento-live-metrics__status i[data-live] { animation: none; } }

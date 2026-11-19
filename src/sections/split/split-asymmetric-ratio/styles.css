@@ -1,0 +1,20 @@
+.ff-split-asymmetric-ratio { padding: clamp(28px, 6cqw, 88px) clamp(18px, 5cqw, 64px); }
+.ff-split-asymmetric-ratio__head h2 { margin: 0 auto clamp(24px, 5cqw, 56px); max-width: 52rem; font-size: clamp(1.7rem, 4.6cqw, 3.2rem); line-height: 1.05; letter-spacing: -0.035em; text-align: center; }
+.ff-split-asymmetric-ratio__rows { display: grid; gap: clamp(32px, 7cqw, 96px); max-width: 74rem; margin: 0 auto; }
+.ff-split-asymmetric-ratio__row { display: grid; grid-template-columns: minmax(0, var(--ff-a)) minmax(0, var(--ff-b)); gap: var(--ff-gap); align-items: var(--ff-align); }
+.ff-split-asymmetric-ratio__row[data-flip] { grid-template-columns: minmax(0, var(--ff-b)) minmax(0, var(--ff-a)); }
+.ff-split-asymmetric-ratio__row[data-flip] .ff-split-asymmetric-ratio__media { order: 2; }
+.ff-split-asymmetric-ratio__art { border-radius: var(--ff-radius); width: 100%; box-shadow: 0 24px 48px -28px rgb(30 20 10 / 0.5); }
+.ff-split-asymmetric-ratio__kicker { margin: 0 0 0.6rem; color: var(--ff-accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-split-asymmetric-ratio__copy h3 { margin: 0 0 0.6rem; font-size: clamp(1.3rem, 3cqw, 2.1rem); line-height: 1.1; letter-spacing: -0.025em; }
+.ff-split-asymmetric-ratio__copy p { margin: 0; opacity: 0.78; }
+.ff-split-asymmetric-ratio__copy p.ff-split-asymmetric-ratio__kicker { opacity: 1; }
+.ff-split-asymmetric-ratio__stat { margin-top: 1rem !important; font-weight: 650; color: var(--ff-accent); opacity: 1 !important; }
+.ff-split-asymmetric-ratio[data-armed] .ff-split-asymmetric-ratio__media { opacity: 0; transform: translate3d(-28px, 0, 0) scale(0.97); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.ff-split-asymmetric-ratio[data-armed] .ff-split-asymmetric-ratio__row[data-flip] .ff-split-asymmetric-ratio__media { transform: translate3d(28px, 0, 0) scale(0.97); }
+.ff-split-asymmetric-ratio[data-armed] .ff-split-asymmetric-ratio__copy { opacity: 0; transform: translate3d(0, 20px, 0); transition: opacity 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1); }
+.ff-split-asymmetric-ratio[data-armed] .ff-split-asymmetric-ratio__row[data-visible] :is(.ff-split-asymmetric-ratio__media, .ff-split-asymmetric-ratio__copy) { opacity: 1; transform: none; }
+@container (max-width: 640px) {
+  .ff-split-asymmetric-ratio__row, .ff-split-asymmetric-ratio__row[data-flip] { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .ff-split-asymmetric-ratio__row[data-flip] .ff-split-asymmetric-ratio__media { order: 0; }
+}

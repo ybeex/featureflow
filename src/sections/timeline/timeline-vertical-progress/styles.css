@@ -1,0 +1,26 @@
+.ff-timeline-vertical-progress { padding: clamp(28px, 6cqw, 88px) clamp(16px, 4cqw, 56px); }
+.ff-timeline-vertical-progress__head { max-width: 40rem; margin: 0 auto clamp(24px, 5cqw, 56px); text-align: center; }
+.ff-timeline-vertical-progress__head p { margin: 0 0 0.5rem; color: var(--ff-accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-timeline-vertical-progress__head h2 { margin: 0; font-size: clamp(1.6rem, 4cqw, 2.8rem); line-height: 1.05; letter-spacing: -0.035em; }
+.ff-timeline-vertical-progress__list { position: relative; list-style: none; margin: 0 auto; padding: 0; max-width: 52rem; display: grid; gap: clamp(28px, 6cqw, 72px); }
+.ff-timeline-vertical-progress__rail { position: absolute; left: 50%; top: 14px; bottom: 14px; width: var(--ff-line); margin-left: calc(var(--ff-line) / -2); background: color-mix(in oklab, var(--ff-fg) 14%, transparent); border-radius: 99px; overflow: hidden; }
+.ff-timeline-vertical-progress__rail i { position: absolute; inset: 0; background: var(--ff-accent); transform-origin: 50% 0; transform: scaleY(var(--ff-p, 0)); }
+.ff-timeline-vertical-progress__item { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; opacity: var(--ff-dim); transition: opacity 0.5s; }
+.ff-timeline-vertical-progress__item[data-done] { opacity: 1; }
+.ff-timeline-vertical-progress__item article { padding: clamp(14px, 2.2cqw, 22px); border-radius: var(--ff-radius); background: #fff; border: 1px solid rgb(0 0 0 / 0.08); }
+.ff-timeline-vertical-progress__item[data-side="l"] article { grid-column: 1; margin-right: clamp(24px, 4cqw, 48px); text-align: right; }
+.ff-timeline-vertical-progress__item[data-side="r"] article { grid-column: 2; margin-left: clamp(24px, 4cqw, 48px); }
+.ff-timeline-vertical-progress__marker { position: absolute; left: 50%; top: 14px; z-index: 1; display: grid; place-items: center; width: 28px; height: 28px; margin: 0 0 0 -14px; border-radius: 50%; background: var(--ff-bg); border: var(--ff-line) solid color-mix(in oklab, var(--ff-fg) 25%, transparent); font-size: 0.75rem; font-weight: 700; transition: background 0.4s, border-color 0.4s, color 0.4s; font-variant-numeric: tabular-nums; }
+.ff-timeline-vertical-progress__item[data-done] .ff-timeline-vertical-progress__marker { background: var(--ff-accent); border-color: var(--ff-accent); color: #fff; }
+.ff-timeline-vertical-progress__when { margin: 0 0 4px; color: var(--ff-accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.ff-timeline-vertical-progress h3 { margin: 0 0 0.3rem; font-size: 1.12rem; letter-spacing: -0.02em; }
+.ff-timeline-vertical-progress article p:last-child { margin: 0; font-size: 0.9rem; opacity: 0.72; }
+.ff-timeline-vertical-progress[data-layout="left"] .ff-timeline-vertical-progress__rail, .ff-timeline-vertical-progress[data-layout="left"] .ff-timeline-vertical-progress__marker { left: 14px; }
+.ff-timeline-vertical-progress[data-layout="left"] .ff-timeline-vertical-progress__item { grid-template-columns: minmax(0, 1fr); }
+.ff-timeline-vertical-progress[data-layout="left"] .ff-timeline-vertical-progress__item article { grid-column: 1; margin: 0 0 0 52px; text-align: left; }
+@container (max-width: 560px) {
+  .ff-timeline-vertical-progress__rail, .ff-timeline-vertical-progress__marker { left: 14px; }
+  .ff-timeline-vertical-progress__item { grid-template-columns: minmax(0, 1fr); }
+  .ff-timeline-vertical-progress__item[data-side] article { grid-column: 1; margin: 0 0 0 48px; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { .ff-timeline-vertical-progress__item, .ff-timeline-vertical-progress__marker { transition: none; } }

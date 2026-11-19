@@ -1,0 +1,34 @@
+.ff-sticky-screenshot-steps { padding: clamp(20px, 5cqw, 64px) clamp(16px, 4cqw, 56px) 0; }
+.ff-sticky-screenshot-steps__head { max-width: 62rem; margin: 0 auto clamp(18px, 4cqw, 40px); }
+.ff-sticky-screenshot-steps__head p { margin: 0; color: var(--ff-accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.ff-sticky-screenshot-steps__head h2 { margin: 0.4rem 0 0; font-size: clamp(1.7rem, 4.4cqw, 3rem); line-height: 1.05; letter-spacing: -0.03em; max-width: 18ch; }
+.ff-sticky-screenshot-steps__grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(20px, 5cqw, 64px); max-width: 62rem; margin: 0 auto; align-items: start; }
+.ff-sticky-screenshot-steps[data-side="right"] .ff-sticky-screenshot-steps__stage { order: 2; }
+.ff-sticky-screenshot-steps__stage { position: sticky; top: var(--ff-top); padding-block: 4px; }
+.ff-sticky-screenshot-steps__shot { position: relative; }
+.ff-sticky-screenshot-steps__layers { position: relative; display: grid; }
+.ff-sticky-screenshot-steps__layer { grid-area: 1 / 1; opacity: 0.001; transition: opacity var(--ff-dur) ease; }
+.ff-sticky-screenshot-steps__layer[data-on] { opacity: 1; }
+.ff-sticky-screenshot-steps__callout { position: absolute; z-index: 3; pointer-events: none; border-radius: 12px; border: 3px solid var(--ff-accent); transform: scale(var(--ff-scale)); transform-origin: center;
+  transition: left var(--ff-dur) cubic-bezier(0.22, 1, 0.36, 1), top var(--ff-dur) cubic-bezier(0.22, 1, 0.36, 1), width var(--ff-dur) cubic-bezier(0.22, 1, 0.36, 1), height var(--ff-dur) cubic-bezier(0.22, 1, 0.36, 1); }
+.ff-sticky-screenshot-steps__callout span { position: absolute; left: -3px; bottom: calc(100% + 6px); padding: 3px 10px; border-radius: 99px; background: var(--ff-accent); color: #fff; font-size: 0.72rem; font-weight: 700; white-space: nowrap; }
+.ff-sticky-screenshot-steps[data-callout="glow"] .ff-sticky-screenshot-steps__callout { border-color: transparent; box-shadow: 0 0 0 2px var(--ff-accent), 0 0 28px 6px color-mix(in oklab, var(--ff-accent) 55%, transparent); animation: ff-sticky-screenshot-steps-pulse 2.2s ease-in-out infinite; }
+.ff-sticky-screenshot-steps[data-callout="label"] .ff-sticky-screenshot-steps__callout { border: 0; background: color-mix(in oklab, var(--ff-accent) 16%, transparent); border-bottom: 3px solid var(--ff-accent); border-radius: 6px; }
+@keyframes ff-sticky-screenshot-steps-pulse { 50% { box-shadow: 0 0 0 2px var(--ff-accent), 0 0 38px 12px color-mix(in oklab, var(--ff-accent) 30%, transparent); } }
+.ff-sticky-screenshot-steps__steps { list-style: none; margin: 0; padding: 0; }
+.ff-sticky-screenshot-steps__steps li { min-height: calc(var(--vp-h, 100vh) * 0.7); display: flex; flex-direction: column; justify-content: center; gap: 8px; opacity: 0.4; transition: opacity 0.3s; }
+.ff-sticky-screenshot-steps__steps li[data-active] { opacity: 1; }
+.ff-sticky-screenshot-steps__num { font-size: 0.74rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ff-accent); }
+.ff-sticky-screenshot-steps__steps h3 { margin: 0; font-size: clamp(1.15rem, 2.8cqw, 1.8rem); line-height: 1.12; letter-spacing: -0.02em; }
+.ff-sticky-screenshot-steps__steps p { margin: 0; opacity: 0.78; max-width: 26rem; }
+.ff-sticky-screenshot-steps__steps li:last-child { margin-bottom: calc(var(--vp-h, 100vh) * 0.2); }
+/* Narrow containers: the screenshot pins as a compact strip above the steps instead of beside them. */
+@container (max-width: 720px) {
+  .ff-sticky-screenshot-steps__grid { grid-template-columns: 1fr; gap: 0; }
+  .ff-sticky-screenshot-steps[data-side="right"] .ff-sticky-screenshot-steps__stage { order: 0; }
+  .ff-sticky-screenshot-steps__stage { top: 0; z-index: 4; padding: 8px 0; background: var(--ff-bg); }
+  .ff-sticky-screenshot-steps__shot { width: 62%; margin-inline: auto; }
+  .ff-sticky-screenshot-steps__steps li { min-height: calc(var(--vp-h, 100vh) * 0.5); opacity: 0.55; }
+  .ff-sticky-screenshot-steps__callout span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ff-sticky-screenshot-steps__callout { animation: none !important; transition: none; } .ff-sticky-screenshot-steps__layer { transition: none; } }
